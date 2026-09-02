@@ -1,34 +1,15 @@
 <?php
-
-$nomProjet = "SPORTSCHOOL";
-$auteur = "LUDIVINE DJENI";
+$nomProjet = "SPORTMANAGER";
+$auteur = "Ludivine Djeni";
 $versionPhp = PHP_VERSION;
-
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<h1><?= htmlspecialchars($nomProjet) ?></h1>
 
-<head>
-    <meta charset="UTF-8">
-    <title><?= htmlspecialchars($nomProjet) ?></title>
-</head>
+<p>Auteur : <?= htmlspecialchars($auteur) ?></p>
 
-<body>
+<p>Version PHP : <?= htmlspecialchars($versionPhp) ?></p>
 
-    <h1><?= htmlspecialchars($nomProjet) ?></h1>
-
-    <p>Application Web transactionnelle pour gérer des activités sportives.</p>
-
-    <p>Version PHP : <?= htmlspecialchars($versionPhp) ?></p>
-
-    <p>Auteur : <?= htmlspecialchars($auteur) ?></p>
-
-    <nav>
-        <a href="index.php">Accueil</a>
-        <a href="recits.php">Récits utilisateurs</a>
-        <a href="#">Activités</a>
-    </nav>
-
-</body>
-</html>
+<a href="#">Écran 1</a>
+<a href="#">Écran 2</a>
+<a href="#">Écran 3</a>

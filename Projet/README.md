@@ -1,0 +1,32 @@
+Le nom de cette application est sportsManager. C'est une application désigné pour gérer le déroulement des activées sportivifs d'un établissement éducatif, ou les membres des équipes pouront consulter les informations de leurs entrainement et match, et aider l'entraineur à perfectionner l'organisation des équipes dont il est responsable
+
+address local pour ouvrir l'application: http://localhost/projet-app-web/
+
+1.Le slogiciels utilisé sont AMPPS, Apache, PHP et MySQL;
+
+les étape pour recuperer mon projet:
+
+1.On doit cloner le projet en premiere grace à l'adresse recuperé dans github avec un git clone
+2.On se dirige  vers le repertoire de notre depot git avec la commande CD
+
+3.Démarrer Appache et MySql avec le toggle dans l'application et on peut ensuite l,ouvrir a partir d'une barre de recherche avec l'addresse
+
+
+
+
+```apache
+Alias /projet "C:/Projets/projet"
+
+<Directory "C:/Projets/projet">
+    Options -Indexes +FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+4. Démarrer le projet
+
+a.Ouvrire softaculous AMPPS
+b.activer appache et mysql avec le bouton
+c.ouvrir http://localhost/projet-app-web/ dans le navigateur
+
+aucune compilation n'est nécessaire
