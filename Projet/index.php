@@ -1,15 +1,7 @@
 <?php
-$nomProjet = "SPORTMANAGER";
-$auteur = "Ludivine Djeni";
-$versionPhp = PHP_VERSION;
-?>
 
-<h1><?= htmlspecialchars($nomProjet) ?></h1>
+declare(strict_types=1);
 
-<p>Auteur : <?= htmlspecialchars($auteur) ?></p>
+require __DIR__ . '/Controleurs/accueil-controleur.php';
 
-<p>Version PHP : <?= htmlspecialchars($versionPhp) ?></p>
-
-<a href="#">Écran 1</a>
-<a href="#">Écran 2</a>
-<a href="#">Écran 3</a>
+afficherAccueil();
