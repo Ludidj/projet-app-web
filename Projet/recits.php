@@ -1,10 +1,106 @@
-users stream_copy_to_stream
+<?php
 
-1.En tant qu'entraineur, j'aimerai ajouter des match afin de prevenir mes équipes des informations d'un match.
-2. En tant qu'entraineur ,j'aimerai pouvoir suppriemr un joueur afin de le retirer si il quitte l'équipe.
-3.En tant que Entraineur, j'aimerai créer des équipes afin de regrouper mes joueurs.
-4.En tant que responsable des activités sportives, j'aimerai créer un sport afin que l'entraineur puisse y assigner des équipes.
-5.En tant que joueur, j'aimerai consulter les match afin d'organiser mon temps à l'école.
-6.En tant   que responsable des activités sportives, je veut pouvoir supprimer un sport afin de le rendre indisponible à l'école
-7.En tant que entraineur, j'aimerai annuler un match afin d'indiquer au joueur qu'il ne sera pas nécessaire de s'y pointer. 
-8.En tant que joueur j'aimerai consulter la liste des membre d emon équipe afin de voir avec qui je vais jouer cette saison.
+$titrePage = "Récits utilisateurs";
+
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title><?= $titrePage ?></title>
+</head>
+
+<body>
+
+<h1><?= $titrePage ?></h1>
+
+<h2>1. Ajouter un match</h2>
+<p>En tant qu'entraîneur, j'aimerais ajouter un match afin de prévenir mon équipe des informations du match.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>L'entraîneur peut ajouter un match.</li>
+    <li>Il peut entrer la date et l'endroit, .</li>
+    <li>Les joueurs peuvent consulter les informations du match</li>
+</ul>
+
+
+<h2>2. Supprimer un joueur</h2>
+<p>En tant qu'entraîneur, j'aimerais supprimer un joueur afin de le retirer s'il quitte l'équipe.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>L'entraîneur peut choisir un joueur.</li>
+    <li>Le joueur est supprimé de l'équipe.</li>
+    <li>Le joueur n'apparaît plus dans la liste.</li>
+</ul>
+
+
+<h2>3. Créer une équipe</h2>
+<p>En tant qu'entraîneur, j'aimerais créer des équipes afin de regrouper mes joueurs.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>L'entraîneur peut créer une équipe.</li>
+    <li>Il peut donner un nom à l'équipe.</li>
+    <li>L'équipe apparaît dans la liste.</li>
+</ul>
+
+
+<h2>4. Créer un sport</h2>
+<p>En tant que responsable des activités sportives, je veux créer un sport afin que l'entraîneur puisse y assigner des équipes.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>Le responsable peut ajouter un sport.</li>
+    <li>Il peut donner un nom au sport.</li>
+    <li>Le sport apparaît dans la liste.</li>
+</ul>
+
+
+<h2>5. Consulter les matchs</h2>
+<p>En tant que joueur, j'aimerais consulter les matchs afin d'organiser mon temps à l'école.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>Le joueur peut voir les matchs.</li>
+    <li>La date et l'heure sont affichées.</li>
+    <li>Le lieu du match est affiché.</li>
+</ul>
+
+
+<h2>6. Supprimer un sport</h2>
+<p>En tant que responsable des activités sportives, je veux pouvoir supprimer un sport afin de le rendre indisponible à l'école.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>Le responsable peut choisir un sport.</li>
+    <li>Il peut supprimer le sport.</li>
+    <li>Le sport n'est plus disponible.</li>
+</ul>
+
+
+<h2>7. Annuler un match</h2>
+<p>En tant qu'entraîneur, j'aimerais annuler un match afin d'indiquer aux joueurs qu'il ne sera pas nécessaire de s'y présenter.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>L'entraîneur peut choisir un match.</li>
+    <li>Il peut annuler le match.</li>
+    <li>Les joueurs voient que le match est annulé.</li>
+</ul>
+
+
+<h2>8. Consulter les membres de son équipe</h2>
+<p>En tant que joueur, j'aimerais consulter la liste des membres de mon équipe afin de voir avec qui je vais jouer cette saison.</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+<ul>
+    <li>Le joueur peut voir son équipe.</li>
+    <li>La liste des joueurs est affichée.</li>
+    <li>Il peut voir les membres de son équipe.</li>
+</ul>
+
+</body>
+</html>
