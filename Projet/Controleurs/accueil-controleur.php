@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 function afficherAccueil(): void
 {
-    $nomProjet = 'SPORTMANAGER';
+    $nomProjet = ''; //SPORTMANAGER MAIS HEADER EST DEJA DANS GABARIT
     $auteur = 'Ludivine Djeni';
     $versionPhp = PHP_VERSION;
     $titrePage = $nomProjet;

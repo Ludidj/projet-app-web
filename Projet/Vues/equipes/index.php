@@ -1,41 +1,27 @@
 <?php ob_start(); ?>
 
-<h1><?= htmlspecialchars($titrePage, ENT_QUOTES, 'UTF-8') ?></h1>
+<h1>Équipes</h1>
 
-<?php if (empty($equipes)): ?>
+<?php if ($equipes === []): ?>
 
-    <p>Aucune équipe dans la base de données.</p>
+    <p>Aucune équipe pour le moment.</p>
 
 <?php else: ?>
 
     <?php foreach ($equipes as $equipe): ?>
 
         <article>
+
             <h2>
-                <?= htmlspecialchars(
-                    (string) $equipe['nom'],
-                    ENT_QUOTES,
-                    'UTF-8'
-                ) ?>
+                <a href="/projet/index.php?action=equipe&id=<?= (int) $equipe['idEquipe'] ?>">
+                    <?= htmlspecialchars($equipe['nom'], ENT_QUOTES, 'UTF-8') ?>  </a>
             </h2>
 
             <p>
-                ID :
-                <?= htmlspecialchars(
-                    (string) $equipe['idEquipe'],
-                    ENT_QUOTES,
-                    'UTF-8'
-                ) ?>
+                Division :
+                <?= (int) $equipe['Division'] ?>
             </p>
 
-            <p>
-                Division :
-                <?= htmlspecialchars(
-                    (string) $equipe['Division'],
-                    ENT_QUOTES,
-                    'UTF-8'
-                ) ?>
-            </p>
         </article>
 
     <?php endforeach; ?>
@@ -44,5 +30,5 @@
 
 <?php
 $contenu = ob_get_clean();
-
 require __DIR__ . '/../gabarit.php';
+?>

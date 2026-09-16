@@ -8,13 +8,12 @@ declare(strict_types=1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/projet/style.css">
 
     <title>
         <?= htmlspecialchars($titrePage, ENT_QUOTES, 'UTF-8') ?>
     </title>
 
-    <link rel="stylesheet" href="/projet/css/style.css">
+    <link rel="stylesheet" href="/Projet/css/style.css">
 </head>
 
 <body>
@@ -35,8 +34,9 @@ declare(strict_types=1);
 
 <footer>
     <p>
-        <?= htmlspecialchars($auteur ?? 'ludivine djeni', ENT_QUOTES, 'UTF-8') ?>
-       
+       <p>
+    <?= htmlspecialchars($auteur ?? 'AUTEUR: Ludivine Djeni', ENT_QUOTES, 'UTF-8') ?>
+</p>
     </p>
 </footer>
 

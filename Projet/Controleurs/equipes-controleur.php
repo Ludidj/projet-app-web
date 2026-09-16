@@ -2,11 +2,61 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../Modèle/equipes-modele.php';
 
-$equipes = obtenirEquipes($pdo);
 
-$titrePage = 'Équipes';
+function afficherEquipes(PDO $pdo): void
+{
+    $equipes = obtenirEquipes($pdo);
 
-require __DIR__ . '/../Vues/equipes/index.php';
+    $titrePage = 'Liste Équipes';
+
+    require __DIR__ . '/../Vues/equipes/index.php';
+}
+
+
+function afficherEquipe(PDO $pdo, int $id): void
+{
+    $equipe = obtenirEquipe($pdo, $id);
+
+    if ($equipe === null) {
+        http_response_code(404);
+        echo 'Équipe introuvable.';
+        return;
+    }
+
+    $titrePage = $equipe['nom'];
+
+    require __DIR__ . '/../Vues/equipes/afficher.php';
+}
+
+
+function afficherJoueursEquipe(PDO $pdo, int $idEquipe): void
+{
+    $equipe = obtenirEquipe($pdo, $idEquipe);
+
+    if ($equipe === null) {
+        http_response_code(404);
+        echo 'Équipe introuvable.';
+        return;
+    }
+
+    $joueurs = obtenirJoueursEquipe($pdo, $idEquipe);
+
+    $titrePage = 'Joueurs de l\'équipe';
+
+    require __DIR__ . '/../Vues/equipes/joueurs.php';
+}function afficherFormulaireAjoutJoueur(PDO $pdo, int $idEquipe): void
+{
+    $equipe = obtenirEquipe($pdo, $idEquipe);
+
+    if ($equipe === null) {
+        http_response_code(404);
+        echo 'Équipe introuvable.';
+        return;
+    }
+
+    $titrePage = 'Ajouter un joueur';
+
+    require __DIR__ . '/../Vues/equipes/ajouter-joueur.php';
+}

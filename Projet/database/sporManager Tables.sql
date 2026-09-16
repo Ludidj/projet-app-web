@@ -47,8 +47,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Joueurs`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `mydb`.`Joueurs` (
-  `idJoueurs` INT NOT NULL,
+  `idJoueurs` INT NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NULL,
   `prénom` VARCHAR(45) NULL,
   `numero` INT(2) NULL,

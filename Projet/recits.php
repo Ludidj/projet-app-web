@@ -34,6 +34,7 @@ $titrePage = "Récits utilisateurs";
     <li>L'entraîneur peut choisir un joueur.</li>
     <li>Le joueur est supprimé de l'équipe.</li>
     <li>Le joueur n'apparaît plus dans la liste.</li>
+    <P>FAIT </P>
 </ul>
 
 
@@ -100,7 +101,26 @@ $titrePage = "Récits utilisateurs";
     <li>Le joueur peut voir son équipe.</li>
     <li>La liste des joueurs est affichée.</li>
     <li>Il peut voir les membres de son équipe.</li>
+
+    <p>
 </ul>
+
+<h2>2. Ajouter un joueur — Complété</h2>
+
+<p>
+    En tant qu'entraîneur, j'aimerais ajouter un joueur à mon équipe
+    afin de garder la liste des membres à jour.
+</p>
+
+<p><strong>Critères d'acceptation :</strong></p>
+
+<ul>
+    <li>L'entraîneur peut accéder au formulaire d'ajout d'un joueur.</li>
+    <li>Il peut entrer le nom, le prénom, le numéro, la division, l'âge et le sexe du joueur.</li>
+    <li>Le joueur ajouté apparaît dans la liste de l'équipe.</li>
+</ul>
+
+<p>FAIT</p>
 
 </body>
 </html>
