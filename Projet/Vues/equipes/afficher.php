@@ -11,7 +11,7 @@
 
 <p>
     <a href="index.php?action=joueurs&idEquipe=<?= (int) $equipe['idEquipe'] ?>">
-        Voir les joueurs
+        Les joueurs
     </a>
 </p>
 

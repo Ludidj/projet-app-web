@@ -15,20 +15,7 @@ function afficherEquipes(PDO $pdo): void
 }
 
 
-function afficherEquipe(PDO $pdo, int $id): void
-{
-    $equipe = obtenirEquipe($pdo, $id);
 
-    if ($equipe === null) {
-        http_response_code(404);
-        echo 'Équipe introuvable.';
-        return;
-    }
-
-    $titrePage = $equipe['nom'];
-
-    require __DIR__ . '/../Vues/equipes/afficher.php';
-}
 
 
 function afficherJoueursEquipe(PDO $pdo, int $idEquipe): void

@@ -1,25 +1,13 @@
 <?php ob_start(); ?>
 
-<h1>Ajouter un joueur</h1>
+<h1>Nouveau joueur</h1>
 
 <h2>
     Équipe :
     <?= htmlspecialchars($equipe['nom'], ENT_QUOTES, 'UTF-8') ?>
 </h2>
 
-<?php if (!empty($erreurs)): ?>
 
-    <div role="alert">
-        <h2>Erreurs :</h2>
-
-        <ul>
-            <?php foreach ($erreurs as $erreur): ?>
-                <li><?= htmlspecialchars($erreur, ENT_QUOTES, 'UTF-8') ?></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-
-<?php endif; ?>
 
 <form method="post" action="index.php?action=ajouter-joueur">
 
@@ -97,14 +85,16 @@
     <p>
         <label for="division">Division :</label>
 
-        <input
-            type="number"
-            id="division"
-            name="division"
-            value="<?= htmlspecialchars((string)($division ?? ''), ENT_QUOTES, 'UTF-8') ?>"
-            required
-            <?= !empty($erreurs['division']) ? 'aria-invalid="true" aria-describedby="erreur-division"' : '' ?>
-        >
+      <input 
+    type="number" 
+    id="division"
+    name="division"
+    value="<?= htmlspecialchars((string)($division ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+    required
+    min="1"
+    max="4"
+    <?= !empty($erreurs['division']) ? 'aria-invalid="true" aria-describedby="erreur-division"' : '' ?>
+>
 
         <?php if (!empty($erreurs['division'])): ?>
             <span id="erreur-division">
@@ -116,15 +106,15 @@
     <p>
         <label for="age">Âge :</label>
 
-        <input
-            type="number"
-            id="age"
-            name="age"
-            value="<?= htmlspecialchars((string)($age ?? ''), ENT_QUOTES, 'UTF-8') ?>"
-            required
-            <?= !empty($erreurs['age']) ? 'aria-invalid="true" aria-describedby="erreur-age"' : '' ?>
-        >
-
+       <input 
+    type="number" 
+    id="age"
+    name="age"
+    value="<?= htmlspecialchars((string)($age ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+    required
+   
+    <?= !empty($erreurs['age']) ? 'aria-invalid="true" aria-describedby="erreur-age"' : '' ?>
+>
         <?php if (!empty($erreurs['age'])): ?>
             <span id="erreur-age">
                 <?= htmlspecialchars($erreurs['age'], ENT_QUOTES, 'UTF-8') ?>
@@ -160,7 +150,7 @@
     </p>
 
     <button type="submit">
-        Ajouter le joueur
+        Ajouter 
     </button>
 
 </form>

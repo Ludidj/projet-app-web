@@ -35,7 +35,12 @@ aucune compilation nécessaire
 
 ------ATELIER 3----------
 
+préparation de ma BD:
 
+
+
+1. Démarrer MySQL dans AMPPS.
+2
 FONCTIONALITÉ COMPLETÉ
 
 -consulter la liste des équpes

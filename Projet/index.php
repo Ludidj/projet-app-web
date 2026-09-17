@@ -17,19 +17,18 @@ try {
 
     switch ($action) {
 
-        // Accueil
+       
         case 'accueil':
             afficherAccueil();
             break;
 
 
-        // Liste des équipes
+      
         case 'equipes':
             afficherEquipes($pdo);
             break;
 
 
-        // Afficher les joueurs d'une équipe
         case 'equipe':
 
             $idEquipe = filter_input(
@@ -48,20 +47,20 @@ try {
             break;
 
 
-        // Ajouter un joueur
+      
       case 'ajouter-joueur':
 
-    // POST : traitement du formulaire
+ 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // Vérification CSRF
+       
         if (!verifierJetonCsrf($_POST['jeton_csrf'] ?? null)) {
             http_response_code(403);
             echo 'Jeton CSRF invalide.';
             break;
         }
 
-        // Valeurs du formulaire
+     
         $idEquipe = filter_input(
             INPUT_POST,
             'idEquipe',
@@ -91,17 +90,17 @@ try {
 
         $sexe = $_POST['sexe'] ?? '';
 
-        // Vérification de l'identifiant de l'équipe
+        
         if ($idEquipe === false || $idEquipe === null) {
             http_response_code(400);
             echo 'Identifiant d\'équipe invalide.';
             break;
         }
 
-        // Tableau des erreurs
+      
         $erreurs = [];
 
-        // Validation du nom
+      
         if ($nom === '') {
             $erreurs['nom'] = 'Le nom est obligatoire.';
         } elseif (mb_strlen($nom) > 45) {
@@ -119,14 +118,13 @@ try {
         }
 
      
-        if ($division === false || $division === null) {
-            $erreurs['division'] = 'La division est obligatoire et doit être un nombre.';
-        }
+        if ($division === false || $division === null || $division < 1 || $division > 4) {
+    $erreurs['division'] = 'La division doit être un nombre entre 1 et 4.';
+}
 
-       
-        if ($age === false || $age === null) {
-            $erreurs['age'] = 'L\'âge est obligatoire et doit être un nombre.';
-        }
+if ($age === false || $age === null || $age < 13 || $age > 18) {
+    $erreurs['age'] = 'L\'âge doit être entre 13 et 18 ans.';
+}
 
         
         if ($sexe !== 'M' && $sexe !== 'F') {
@@ -185,6 +183,11 @@ try {
 
     afficherFormulaireAjoutJoueur($pdo, $idEquipe);
 
+    break;
+
+       http_response_code(405);
+    header('Allow: GET, POST');
+    echo 'Méthode HTTP non autorisée.';
     break;
        
         case 'supprimer-joueur':

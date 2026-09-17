@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-function getJoueur(PDO $pdo, int $idEquipe): array
+/*function getJoueur(PDO $pdo, int $idEquipe): array
 {
     $sql = "
         SELECT
@@ -27,7 +27,7 @@ function getJoueur(PDO $pdo, int $idEquipe): array
 
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
-
+*/
 
 function obtenirJoueur(PDO $pdo, int $idJoueur): ?array
 {
@@ -70,3 +70,4 @@ function supprimerJoueur(PDO $pdo, int $idJoueur): void
         'idJoueur' => $idJoueur
     ]);
 }
+
