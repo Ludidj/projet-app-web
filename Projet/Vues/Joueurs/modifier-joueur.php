@@ -1,4 +1,4 @@
-```php
+
 <h1>Modifier un joueur</h1>
 
 <?php if (!empty($erreurs)): ?>
@@ -16,6 +16,12 @@
 <?php endif; ?>
 
 <form method="post" action="modifier-joueur-enregistrer">
+
+    <input
+        type="hidden"
+        name="jeton_csrf"
+        value="<?= htmlspecialchars(jetonCsrf(), ENT_QUOTES, 'UTF-8') ?>"
+    >
 
     <input
         type="hidden"
@@ -93,4 +99,4 @@
     </button>
 
 </form>
-```
+
