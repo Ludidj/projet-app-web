@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 class Vue
 {
+    private Authentification $authentification;
+
+    public function __construct(Authentification $authentification)
+    {
+        $this->authentification = $authentification;
+    }
+
     public function afficher(
         string $fichier,
         array $donnees = [],
@@ -17,6 +24,8 @@ class Vue
 
         extract($donnees, EXTR_SKIP);
 
+        $utilisateurConnecte = $this->authentification->utilisateur();
+
         ob_start();
 
         require $chemin;
@@ -26,3 +35,4 @@ class Vue
         require __DIR__ . '/gabarit.php';
     }
 }
+

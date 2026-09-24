@@ -29,10 +29,17 @@ declare(strict_types=1);
 
     <h1>SPORTMANAGER</h1>
 
-   <nav>
-        <a href="">Accueil</a>
-        <a href="equipes">Équipes</a>
-        <a href="recits">Récits</a>
+    <nav>
+        <div>
+            <a href="inscription">Inscription</a>
+            <a href="connexion">Connexion</a>
+        
+
+        
+            <a href="accueil">Accueil</a>
+            <a href="equipes">Équipes</a>
+            <a href="recits">Récits</a>
+        </div>
     </nav>
 
 </header>

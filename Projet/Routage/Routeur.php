@@ -6,13 +6,16 @@ class Routeur
 {
     private $controleurAcceuil;
     private $controleurEquipe;
+    private ControleurUtilisateur $controleurUtilisateur;
 
     public function __construct(
         ControleurAcceuil $controleurAcceuil,
-        ControleurEquipe $controleurEquipe
+        ControleurEquipe $controleurEquipe,
+        ControleurUtilisateur $controleurUtilisateur
     ) {
         $this->controleurAcceuil = $controleurAcceuil;
         $this->controleurEquipe = $controleurEquipe;
+        $this->controleurUtilisateur = $controleurUtilisateur;
     }
 
     public function router(): void
@@ -119,10 +122,56 @@ class Routeur
 
                 break;
 
+            case 'inscription':
+                $this->controleurUtilisateur->inscription();
+                break;
+
+            case 'creer-compte':
+                $this->controleurUtilisateur->creerCompte();
+                break;
+
+            case 'connexion':
+                $this->controleurUtilisateur->connexion();
+                break;
+
+            case 'authentifier':
+                $this->controleurUtilisateur->authentifier();
+                break;
+
+            case 'deconnexion':
+                $this->controleurUtilisateur->deconnecter();
+                break;
+            case 'modifier-joueur':
+
+    $idJoueur = filter_input(
+        INPUT_GET,
+        'id',
+        FILTER_VALIDATE_INT
+    );
+
+    if ($idJoueur === false || $idJoueur === null) {
+        throw new InvalidArgumentException(
+            'Identifiant du joueur invalide.',
+            400
+        );
+    }
+
+    $this->controleurEquipe
+        ->afficherFormulaireModificationJoueur($idJoueur);
+
+    break;
+
+case 'modifier-joueur-enregistrer':
+
+    $this->controleurEquipe->modifierJoueur($_POST);
+
+    break;    
+
             default:
                 http_response_code(404);
                 echo 'Page introuvable.';
                 break;
         }
     }
+    
 }

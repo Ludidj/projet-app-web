@@ -67,4 +67,38 @@ class Joueur extends Modele
             'idJoueur' => $idJoueur
         ]);
     }
+    
+public function modifierJoueur(
+    int $idJoueur,
+    string $nom,
+    string $prenom,
+    int $numero,
+    int $division,
+    int $age,
+    string $sexe
+): void {
+    $sql = "
+        UPDATE Joueurs
+        SET
+            nom = :nom,
+            prénom = :prenom,
+            numero = :numero,
+            division = :division,
+            age = :age,
+            sexe = :sexe
+        WHERE idJoueurs = :idJoueur
+    ";
+
+    $this->executer($sql, [
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'numero' => $numero,
+        'division' => $division,
+        'age' => $age,
+        'sexe' => $sexe,
+        'idJoueur' => $idJoueur
+    ]);
+}
+
+
 }
