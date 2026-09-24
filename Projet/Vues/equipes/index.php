@@ -1,34 +1,21 @@
-<?php ob_start(); ?>
+<h1>Les équipes</h1>
 
-<h1>Équipes</h1>
+<?php if (empty($equipes)): ?>
 
-<?php if ($equipes === []): ?>
-
-    <p>Aucune équipe pour le moment.</p>
+    <p>Aucune équipe trouvée.</p>
 
 <?php else: ?>
 
-    <?php foreach ($equipes as $equipe): ?>
+    <ul>
+        <?php foreach ($equipes as $equipe): ?>
 
-        <article>
+            <li>
+                <a href="index.php?action=equipe&id=<?= $equipe['id'] ?>">
+                    <?= htmlspecialchars($equipe['nom'], ENT_QUOTES, 'UTF-8') ?>
+                </a>
+            </li>
 
-            <h2>
-                <a href="/projet/index.php?action=equipe&id=<?= (int) $equipe['idEquipe'] ?>">
-                    <?= htmlspecialchars($equipe['nom'], ENT_QUOTES, 'UTF-8') ?>  </a>
-            </h2>
-
-            <p>
-                Division :
-                <?= (int) $equipe['Division'] ?>
-            </p>
-
-        </article>
-
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </ul>
 
 <?php endif; ?>
-
-<?php
-$contenu = ob_get_clean();
-require __DIR__ . '/../gabarit.php';
-?>

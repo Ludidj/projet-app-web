@@ -5,40 +5,56 @@ declare(strict_types=1);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
+    <?php $baseUrl = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>
+
+    <base href="<?= htmlspecialchars($baseUrl, ENT_QUOTES, 'UTF-8') ?>">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        <?= htmlspecialchars($titrePage, ENT_QUOTES, 'UTF-8') ?>
+        <?= htmlspecialchars($titrePage ?? 'SPORTMANAGER', ENT_QUOTES, 'UTF-8') ?>
     </title>
 
-    <link rel="stylesheet" href="/Projet/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
 <header>
+
     <h1>SPORTMANAGER</h1>
 
-    <nav>
-        <a href="/projet/index.php">Accueil</a>
-        <a href="/projet/equipes.php">Équipes</a>
-        <a href="/projet/recits.php">Récits</a>
+   /* <nav>
+        <a href="">Accueil</a>
+        <a href="equipes">Équipes</a>
+        <a href="recits">Récits</a>
     </nav>
+
 </header>
 
 <main>
+
     <?= $contenu ?>
+
 </main>
 
 <footer>
+
     <p>
-       <p>
-    <?= htmlspecialchars($auteur ?? 'AUTEUR: Ludivine Djeni', ENT_QUOTES, 'UTF-8') ?>
-</p>
+        <?= htmlspecialchars(
+            $auteur ?? 'AUTEUR: Ludivine Djeni',
+            ENT_QUOTES,
+            'UTF-8'
+        ) ?>
     </p>
+
 </footer>
 
 </body>
+
 </html>
