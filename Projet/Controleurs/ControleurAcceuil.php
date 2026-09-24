@@ -28,6 +28,16 @@ public function afficherAcceuil(): void
     ]);
 }
 
+public function afficherRecits(): void
+{
+    $this->vue->afficher(
+        'recits',
+        [],
+        'Récits'
+    );
+}
+
+
 
    
 }
