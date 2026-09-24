@@ -52,3 +52,48 @@ routage:
 index.php contient les actions comme: 
 index.php?action=equipes
 index.php?action=equipe&id=1
+
+
+
+
+
+-------ATELIER 4----------
+
+
+
+Le projet est en format POO MVC
+
+- `Modèle/
+- `Vues/
+- `Routage/
+- `Services/
+
+le smodele herite de la classe modele et utilise une connection pdo qui est partagé
+
+# ma BD
+
+1. Créer la base de données MySQL.
+2. Importer le script du projet et ajouter la table utilisateur
+
+
+
+
+
+accueil: accueil
+equipes:liste des équipes
+equipe/ifjoueur: joueurs d'une équipe
+ajouter-joueur/idjoueur: ajoute un joueur
+modifier-joueur/idjoueur: modifie un joueur
+confirmer-supression/idjoueur: supprimer un joueur
+inscription: s'inscrir
+connexion: se connecter
+deconnexion: se déconnecter
+recits: la page récits avec ce qui a ete fait ou pas
+
+## Démarrer l'application
+
+1. Démarrer Apache et MySQL.
+2. configurer config.db.
+3. Placer le projet a la racine
+4.ouvrir avec http://localhost/projet/
+```

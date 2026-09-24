@@ -27,6 +27,17 @@ class Routeur
             case 'accueil':
                 $this->controleurAcceuil->afficherAcceuil();
                 break;
+            case 'accueil':
+    $this->controleurAcceuil->afficherAcceuil();
+    break;
+
+case 'recits':
+    $this->controleurAcceuil->afficherRecits();
+    break;
+
+case 'equipes':
+    $this->controleurEquipe->afficherEquipes();
+    break;    
 
             case 'equipes':
                 $this->controleurEquipe->afficherEquipes();
