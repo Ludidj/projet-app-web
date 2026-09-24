@@ -11,7 +11,7 @@
 <h2>Liste des joueurs</h2>
 
 <p>
-    <a href="index.php?action=ajouter-joueur&idEquipe=<?= $equipe['id'] ?>">
+    <a href="index.php?action=ajouter-joueur&idEquipe=<?= $equipe['idEquipe'] ?>">
         Ajouter un joueur
     </a>
 </p>
@@ -27,12 +27,15 @@
         <?php foreach ($joueurs as $joueur): ?>
 
             <li>
-                <?= htmlspecialchars($joueur['nom'], ENT_QUOTES, 'UTF-8') ?>
+              <li>
+    <?= htmlspecialchars($joueur['prénom'], ENT_QUOTES, 'UTF-8') ?>
+    <?= htmlspecialchars($joueur['nom'], ENT_QUOTES, 'UTF-8') ?>
+<a href="index.php?action=confirmer-supression&id=<?= $joueur['idJoueurs'] ?>">
+    Supprimer
+</a>
 
-                <a href="index.php?action=supprimer-joueur&id=<?= $joueur['id'] ?>">
-                    Supprimer
-                </a>
-            </li>
+</li>
+             
 
         <?php endforeach; ?>
 

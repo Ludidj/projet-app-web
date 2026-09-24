@@ -46,12 +46,36 @@ class Routeur
                 $this->controleurEquipe->afficherJoueursEquipe($idEquipe);
                 break;
 
+            case 'supprimer-joueur':
+
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                    $this->controleurEquipe->supprimerJoueur($_POST);
+
+                } else {
+
+                    $idJoueur = filter_input(
+                        INPUT_GET,
+                        'id',
+                        FILTER_VALIDATE_INT
+                    );
+
+                    if ($idJoueur === false || $idJoueur === null) {
+                        throw new InvalidArgumentException(
+                            'Identifiant du joueur invalide.',
+                            400
+                        );
+                    }
+
+                    $this->controleurEquipe->supprimerJoueur($idJoueur);
+                }
+
+                break;
+
             case 'ajouter-joueur':
 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-                    // Cette partie doit utiliser ta méthode actuelle
-                    // d'ajout de joueur.
                     $this->controleurEquipe->ajouterJoueur($_POST);
 
                 } else {
@@ -72,6 +96,26 @@ class Routeur
                     $this->controleurEquipe
                         ->afficherFormulaireAjoutJoueur($idEquipe);
                 }
+
+                break;
+
+            case 'confirmer-supression':
+
+                $idJoueur = filter_input(
+                    INPUT_GET,
+                    'id',
+                    FILTER_VALIDATE_INT
+                );
+
+                if ($idJoueur === false || $idJoueur === null) {
+                    throw new InvalidArgumentException(
+                        'Identifiant du joueur invalide.',
+                        400
+                    );
+                }
+
+                $this->controleurEquipe
+                    ->confirmerSupression($idJoueur);
 
                 break;
 

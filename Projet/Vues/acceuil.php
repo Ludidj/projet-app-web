@@ -1,8 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
-ob_start();
 ?>
 
 <h1><?= htmlspecialchars($nomProjet, ENT_QUOTES, 'UTF-8') ?></h1>
@@ -28,14 +26,8 @@ ob_start();
 
 <nav>
     <ul>
-        <li><a href="equipes.php">Gérer les équipes</a></li>
+        <li><a href="equipes">Gérer les équipes</a></li>
         <li><a href="#">Consulter les joueurs</a></li>
         <li><a href="#">Voir les activités</a></li>
     </ul>
 </nav>
-
-<?php
-
-$contenu = ob_get_clean();
-
-require __DIR__ . '/gabarit.php';

@@ -10,7 +10,7 @@
     <input
         type="hidden"
         name="idEquipe"
-        value="<?= htmlspecialchars((string) $equipe['id'], ENT_QUOTES, 'UTF-8') ?>"
+        value="<?= htmlspecialchars((string) $equipe['idEquipe'], ENT_QUOTES, 'UTF-8') ?>"
     >
 
     <p>
@@ -24,6 +24,62 @@
     </p>
 
     <p>
+        <label for="prenom">Prénom du joueur :</label>
+        <input
+            type="text"
+            id="prenom"
+            name="prenom"
+            required
+        >
+    </p>
+
+    <p>
+        <label for="numero">Numéro :</label>
+        <input
+            type="number"
+            id="numero"
+            name="numero"
+            required
+        >
+    </p>
+
+    <p>
+        <label for="division">Division :</label>
+        <input
+            type="number"
+            id="division"
+            name="division"
+            required
+        >
+    </p>
+
+    <p>
+        <label for="age">Âge :</label>
+        <input
+            type="number"
+            id="age"
+            name="age"
+            required
+        >
+    </p>
+
+    
+       <p>
+    <label for="sexe">Sexe :</label>
+
+    <select
+        id="sexe"
+        name="sexe"
+        required
+    >
+        <option value="">-- Choisir --</option>
+        <option value="M">M</option>
+        <option value="F">F</option>
+    </select>
+
+    </p>
+
+    <p>
         <button type="submit">
             Ajouter
         </button>
@@ -32,7 +88,7 @@
 </form>
 
 <p>
-    <a href="index.php?action=equipe&id=<?= $equipe['id'] ?>">
+    <a href="index.php?action=equipe&id=<?= $equipe['idEquipe'] ?>">
         Retour à l'équipe
     </a>
 </p>
