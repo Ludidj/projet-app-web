@@ -110,6 +110,7 @@ $titrePage = "Récits utilisateurs";
 <p>
     En tant qu'entraîneur, j'aimerais ajouter un joueur à mon équipe
     afin de garder la liste des membres à jour.
+    FAIT
 </p>
 
 <p><strong>Critères d'acceptation :</strong></p>
