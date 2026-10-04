@@ -1,0 +1,21 @@
+name: Laravel CI
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Construire l'image Laravel
+        run: docker build -t laravel-app .
+
+      - name: Verifier public/index.php
+        run: docker run --rm laravel-app test -f /var/www/html/public/index.php
