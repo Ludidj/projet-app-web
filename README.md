@@ -64,3 +64,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+chapitre 6
+ les technologies utilisées sont: 
+ -Laravel 12
+ php
+ docker
+ mysql
+ 
+
+ 1. DEMARRER
+
+ pour demarrer on entre la ocmmande  docker compose up -d --build
+
+ l'addresse de l'application est http://localhost:8080
+
+ configuration de la BD:
+ docker compose exec app php artisan migrate 
+
+ pour arreter docker 
+
+ docker compose down
