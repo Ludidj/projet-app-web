@@ -9,8 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('joueurs', function (Blueprint $table) {
-            $table->integer('idJoueurs')->primary();
-            $table->integer('idEquipe')->nullable();
+            $table->id('idJoueurs');
+
+            $table->unsignedBigInteger('idEquipe')->nullable();
+
             $table->string('nom', 45)->nullable();
             $table->string('prénom', 45)->nullable();
             $table->integer('numero')->nullable();

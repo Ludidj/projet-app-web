@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipe;
+use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,6 +16,7 @@ class EquipeController extends Controller
     public function index(): View
     {
         $equipes = Equipe::query()
+            ->with('sport')
             ->paginate(10);
 
         return view('equipes.index', compact('equipes'));
@@ -25,7 +27,9 @@ class EquipeController extends Controller
      */
     public function create(): View
     {
-        return view('equipes.create');
+        $sports = Sport::all();
+
+        return view('equipes.create', compact('sports'));
     }
 
     /**
@@ -34,7 +38,7 @@ class EquipeController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'idSport' => ['required', 'integer'],
+            'idSport' => ['required', 'exists:sports,idSports'],
             'nom' => ['required', 'string', 'max:45'],
             'Division' => ['nullable', 'integer'],
         ]);
@@ -50,9 +54,9 @@ class EquipeController extends Controller
      */
     public function show(Equipe $equipe): View
     {
-        return view('equipes.show', [
-            'equipe' => $equipe,
-        ]);
+        $equipe->load('sport');
+
+        return view('equipes.show', compact('equipe'));
     }
 
     /**
@@ -60,7 +64,9 @@ class EquipeController extends Controller
      */
     public function edit(Equipe $equipe): View
     {
-        return view('equipes.edit', compact('equipe'));
+        $sports = Sport::all();
+
+        return view('equipes.edit', compact('equipe', 'sports'));
     }
 
     /**
@@ -69,7 +75,7 @@ class EquipeController extends Controller
     public function update(Request $request, Equipe $equipe): RedirectResponse
     {
         $validated = $request->validate([
-            'idSport' => ['required', 'integer'],
+            'idSport' => ['required', 'exists:sports,idSports'],
             'nom' => ['required', 'string', 'max:45'],
             'Division' => ['nullable', 'integer'],
         ]);

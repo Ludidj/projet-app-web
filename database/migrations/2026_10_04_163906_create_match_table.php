@@ -9,12 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('match', function (Blueprint $table) {
-            $table->integer('idMatch')->primary();
-            $table->integer('idEquipe')->nullable();
+            $table->id('idMatch');
+
+            $table->unsignedBigInteger('idEquipe')->nullable();
             $table->date('date')->nullable();
             $table->string('Lieu', 100)->nullable();
             $table->time('heure')->nullable();
-            $table->integer('idAdversaire')->nullable();
+            $table->unsignedBigInteger('idAdversaire')->nullable();
             $table->integer('scoreEquipe')->nullable();
             $table->integer('scoreAdversair')->nullable();
 
