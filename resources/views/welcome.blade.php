@@ -37,6 +37,9 @@
                         >
                             Log in
                         </a>
+<form method="post" action="{{ route('equipes.store') }}" enctype="multipart/form-data">
+    @include('equipes._form', ['equipe' => null])
+</form>
 
                         @if (Route::has('register'))
                             <a

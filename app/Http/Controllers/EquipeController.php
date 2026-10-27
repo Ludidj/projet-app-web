@@ -37,13 +37,33 @@ class EquipeController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
+         /*$validated = $request->validate([
             'idSport' => ['required', 'exists:sports,idSports'],
             'nom' => ['required', 'string', 'max:45'],
             'Division' => ['nullable', 'integer'],
-        ]);
+        ]);*/
 
-        $equipe = Equipe::create($validated);
+        $user = User ::query()->firstOrFail();
+
+        $data = $request->safe()->except('image');
+        $path = $request->file('image')?->store('equipes', 'public');
+
+        try {
+        $equipe = Equipe::create([
+            ...$data,
+            'image_path' => $path,
+            'user_id' => $user->id,
+            'published_at' => now(),
+        ]);
+    } catch (Throwable $exception) {
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+        throw $exception;
+    }
+
+
+       
 
         return redirect()->route('equipes.show', $equipe)
             ->with('status', 'Équipe créée.');
@@ -72,19 +92,33 @@ class EquipeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Equipe $equipe): RedirectResponse
-    {
-        $validated = $request->validate([
+    public function update(Request $request, Equipe $equipe): RedirectResponse{
+    $data = $request->safe()->except('image');
+$newPath = $request->file('image')?->store('equipes', 'public');
+$oldPath = $equipe->image_path;
+    try{
+       
+    /* $validated = $request->validate([
             'idSport' => ['required', 'exists:sports,idSports'],
             'nom' => ['required', 'string', 'max:45'],
             'Division' => ['nullable', 'integer'],
-        ]);
+        ]); */
+$equipe ->update([...$data,...($newPath ? ['image_path' => $newPath] : []),
+]);
+    }catch (Throwable $exception)  {
+        if ($newPath)  {
+            Storage::disk('public')->delete($newPath);
+          }
+          throw $exception;
+           }
+            if ($newPath && $oldPath)  {
+                Storage::disk('public')->delete($oldPath);
+              }
 
-        $equipe->update($validated);
+              }
 
-        return redirect()->route('equipes.show', $equipe)
-            ->with('status', 'Équipe modifiée.');
-    }
+
+               
 
     /**
      * Remove the specified resource from storage.

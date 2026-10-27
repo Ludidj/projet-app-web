@@ -18,6 +18,11 @@
 
 <h2>Joueurs</h2>
 
+@if ($article->image_path)
+    <img src="{{ Storage::disk('public')->url($article->image_path) }}"
+         alt="{{ $article->title }}">
+@endif
+
 @forelse ($equipe->joueurs as $joueur)
     <article>
         <h3>{{ $joueur->nom }} {{ $joueur->{'prénom'} }}</h3>
