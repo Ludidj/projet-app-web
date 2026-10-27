@@ -1,20 +1,41 @@
-
 @csrf
 
 <label for="idSport">Sport</label>
-<input type="number" id="idSport" name="idSport" value="{{ old('idSport', $equipe?->idSport) }}">
+<select id="idSport" name="idSport">
+    <option value="">-- Choisir un sport --</option>
+
+    @foreach ($sports as $sport)
+        <option
+            value="{{ $sport->idSports }}"
+            @selected(old('idSport', $equipe?->idSport) == $sport->idSports)
+        >
+            {{ $sport->nomSport }}
+        </option>
+    @endforeach
+</select>
+
 @error('idSport')
     <p>{{ $message }}</p>
 @enderror
 
 <label for="nom">Nom de l'équipe</label>
-<input type="text" id="nom" name="nom" value="{{ old('nom', $equipe?->nom) }}">
+<input
+    type="text"
+    id="nom"
+    name="nom"
+    value="{{ old('nom', $equipe?->nom) }}"
+>
 @error('nom')
     <p>{{ $message }}</p>
 @enderror
 
 <label for="Division">Division</label>
-<input type="number" id="Division" name="Division" value="{{ old('Division', $equipe?->Division) }}">
+<input
+    type="number"
+    id="Division"
+    name="Division"
+    value="{{ old('Division', $equipe?->Division) }}"
+>
 @error('Division')
     <p>{{ $message }}</p>
 @enderror

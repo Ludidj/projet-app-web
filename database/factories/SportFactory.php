@@ -5,22 +5,15 @@ namespace Database\Factories;
 use App\Models\Sport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Sport>
- */
 class SportFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Sport::class;
+
     public function definition(): array
     {
         return [
-            'nomSport' => fake()->sport()
-
-            //
+            'nomSport' => fake()->unique()->word(),
+           'description' => fake()->text(40)
         ];
     }
 }

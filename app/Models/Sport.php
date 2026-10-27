@@ -10,14 +10,14 @@ class Sport extends Model
 {
     use HasFactory;
 
-    protected $table = 'Sports';
+    protected $table = 'sports';
 
     protected $primaryKey = 'idSports';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'idSports',
+       
         'nomSport',
         'description'
     ];

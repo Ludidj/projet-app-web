@@ -86,3 +86,43 @@ chapitre 6
  pour arreter docker 
 
  docker compose down
+
+
+
+ chapitre 7
+
+ SPORTMANAGER
+
+ Description
+SPORTMANAGER est un projet qui permet de gérer des équipes sportives 
+
+ Fonctionnalités
+
+Voir les équipes.
+ Ajouter une équipe.
+ Modifier une équipe.
+ Supprimer une équipe.
+ Voir les informations d’une équipe.
+
+Technologies utilisées
+- PHP
+- Laravel
+- MySQL
+- Docker
+- eloquent et blade???????
+
+ Pour lancer le projet
+ Ouvrir le terminal 
+taper la ocmmande docker compose up -d.
+lancer http://localhost:8080 dans le navigateur.
+
+ Routes principales
+/equipe : afficher les équipes.
+/equipe/create : ajouter une équipe.
+/equipe/{equipe} : voir une équipe.
+/equipe/{equipe}/edit : modifier une équipe.
+
+Tests
+J’ai testé les différentes fonctions pour vérifier que les équipes peuvent être ajoutées, modifiées, affichées et supprimées.
+
+
