@@ -28,7 +28,7 @@ class RechercheEquipeController extends Controller
 
             return response()->Json([
                 'data' => $equipes->map(fn (Equipe $equipe) =>[
-                    'id' => $equipe-idEquipe,
+                    'id' => $equipe->idEquipe,
                     'label' => $equipe->nom,
                     'url'=>route ('equipe.show', $equipe),
 
