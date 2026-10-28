@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('joueurs', function (Blueprint $table) {
             $table->id('idJoueurs');
 
-            $table->unsignedBigInteger('idEquipe')->nullable();
+            $table->id('idEquipe')->nullable();
 
             $table->string('nom', 45)->nullable();
             $table->string('prénom', 45)->nullable();

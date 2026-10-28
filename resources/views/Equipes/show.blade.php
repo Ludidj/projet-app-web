@@ -1,7 +1,7 @@
 <article>
     <h1>{{ $equipe->nom }}</h1>
     <p>Identifiant : {{ $equipe->idEquipe }}</p>
-    <p>Sport : {{ $equipe->idSport }}</p>
+    <p>Sport : {{ $equipe->sport->nomSport }}</p>
     <p>Division : {{ $equipe->Division }}</p>
 </article>
 

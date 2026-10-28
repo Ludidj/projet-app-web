@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('match', function (Blueprint $table) {
             $table->id('idMatch');
 
-            $table->unsignedBigInteger('idEquipe')->nullable();
+            $table->id('idEquipe')->nullable();
             $table->date('date')->nullable();
             $table->string('Lieu', 100)->nullable();
             $table->time('heure')->nullable();
