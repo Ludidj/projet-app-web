@@ -1,7 +1,8 @@
-// lang/fr/interface.php
+<?php
+
 return [
-    'articles' => 'Equipe existantes',
-    'search' => 'Rechercher une equipe',
+    'equipes' => 'Liste équipes',
+    'search' => 'Rechercher une équipe',
     'searching' => 'Recherche en cours...',
     'no_results' => 'Aucun résultat.',
     'results' => ':count résultat(s).',

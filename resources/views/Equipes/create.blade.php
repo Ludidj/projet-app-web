@@ -1,7 +1,7 @@
-
 <h1>Créer une équipe</h1>
 
-<form method="post" action="{{ route('equipe.store') }}">
+<form method="post" action="{{ route('equipe.store') }}" enctype="multipart/form-data">
+    @csrf
     @include('equipes._form', ['equipe' => null])
 </form>
 

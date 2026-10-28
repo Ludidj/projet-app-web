@@ -1,6 +1,7 @@
-// lang/en/interface.php
+<?php
+
 return [
-    'equipes' => 'Posted teams',
+    'equipes' => 'teams list',
     'search' => 'Search teams',
     'searching' => 'Searching...',
     'no_results' => 'No results.',

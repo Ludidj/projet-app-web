@@ -1,4 +1,3 @@
-
 <article>
     <h1>{{ $equipe->nom }}</h1>
     <p>Identifiant : {{ $equipe->idEquipe }}</p>
@@ -16,12 +15,14 @@
     <button type="submit">Supprimer</button>
 </form>
 
-<h2>Joueurs</h2>
-
-@if ($article->image_path)
-    <img src="{{ Storage::disk('public')->url($article->image_path) }}"
-         alt="{{ $article->title }}">
+@if ($equipe->image_path)
+    <img
+        src="{{ asset('storage/' . $equipe->image_path) }}"
+        alt="{{ $equipe->nom }}"
+        style="max-width: 300px; height: auto;"
+    >
 @endif
+<h2>Joueurs</h2>
 
 @forelse ($equipe->joueurs as $joueur)
     <article>
