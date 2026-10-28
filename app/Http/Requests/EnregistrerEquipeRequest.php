@@ -12,7 +12,7 @@ class EnregistrerEquipeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,15 @@ class EnregistrerEquipeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'idSport' => ['required', 'exists:sports,idSports'],
+            'nom' => ['required', 'string', 'max:45'],
+            'Division' => ['nullable', 'integer'],
+            'image' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:2048',
+            ],
         ];
     }
 }

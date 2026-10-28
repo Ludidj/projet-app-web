@@ -7,6 +7,10 @@ use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Throwable;
+use App\Http\Requests\EnregistrerEquipeRequest;
 
 class EquipeController extends Controller
 {
@@ -35,20 +39,36 @@ class EquipeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(EnregistrerEquipeRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
+         /*$validated = $request->validate([
             'idSport' => ['required', 'exists:sports,idSports'],
             'nom' => ['required', 'string', 'max:45'],
             'Division' => ['nullable', 'integer'],
+        ]);*/
+
+   $data = $request->safe()->except('image');
+
+    $path = $request->file('image')
+        ?->store('equipes', 'public');
+
+    try {
+        $equipe = Equipe::create([
+            ...$data,
+            'image_path' => $path,
         ]);
+    } catch (Throwable $exception) {
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
 
-        $equipe = Equipe::create($validated);
-
-        return redirect()->route('equipes.show', $equipe)
-            ->with('status', 'Équipe créée.');
+        throw $exception;
     }
 
+    return redirect()
+        ->route('equipe.show', $equipe)
+        ->with('status', 'Équipe créée.');
+}
     /**
      * Display the specified resource.
      */
@@ -72,19 +92,34 @@ class EquipeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Equipe $equipe): RedirectResponse
-    {
-        $validated = $request->validate([
-            'idSport' => ['required', 'exists:sports,idSports'],
-            'nom' => ['required', 'string', 'max:45'],
-            'Division' => ['nullable', 'integer'],
+   public function update(EnregistrerEquipeRequest $request, Equipe $equipe): RedirectResponse
+{
+    $data = $request->safe()->except('image');
+    $newPath = $request->file('image')?->store('equipes', 'public');
+    $oldPath = $equipe->image_path;
+
+    try {
+        $equipe->update([
+            ...$data,
+            ...($newPath ? ['image_path' => $newPath] : []),
         ]);
+    } catch (Throwable $exception) {
+        if ($newPath) {
+            Storage::disk('public')->delete($newPath);
+        }
 
-        $equipe->update($validated);
-
-        return redirect()->route('equipes.show', $equipe)
-            ->with('status', 'Équipe modifiée.');
+        throw $exception;
     }
+
+    if ($newPath && $oldPath) {
+        Storage::disk('public')->delete($oldPath);
+    }
+
+    return redirect()->route('equipe.show', $equipe)
+        ->with('status', 'Équipe modifiée.');
+}
+
+               
 
     /**
      * Remove the specified resource from storage.
@@ -93,7 +128,7 @@ class EquipeController extends Controller
     {
         $equipe->delete();
 
-        return redirect()->route('equipes.index')
+        return redirect()->route('equipe.index')
             ->with('status', 'Équipe supprimée.');
     }
 }

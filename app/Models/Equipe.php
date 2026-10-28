@@ -21,6 +21,7 @@ class Equipe extends Model
         'idSport',
         'nom',
         'Division',
+        'image_path', 
     ];
 
     protected function casts(): array

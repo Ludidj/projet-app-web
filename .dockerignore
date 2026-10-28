@@ -4,6 +4,7 @@
 auth.json
 vendor
 node_modules
+public/storage
 database/*.sqlite*
 storage/logs/*
 storage/framework/cache/*
