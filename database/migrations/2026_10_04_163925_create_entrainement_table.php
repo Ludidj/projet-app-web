@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('entrainement', function (Blueprint $table) {
             $table->integer('idEntrainement')->primary();
-            $table->unsignedBigInteger('idEquipe')->nullable();
+            $table->id('idEquipe')->nullable();
             $table->string('heure', 45)->nullable();
             $table->string('fréquence', 45)->nullable();
 
