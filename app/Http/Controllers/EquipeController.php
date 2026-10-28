@@ -119,6 +119,7 @@ class EquipeController extends Controller
         ->with('status', 'Équipe modifiée.');
 }
 
+
                
 
     /**
@@ -126,9 +127,16 @@ class EquipeController extends Controller
      */
     public function destroy(Equipe $equipe): RedirectResponse
     {
+        $image = $equipe->image_path;
         $equipe->delete();
+
+        if ($image) {
+            Storage::disk('public')->delete($image);
+        }
 
         return redirect()->route('equipe.index')
             ->with('status', 'Équipe supprimée.');
+
+            
     }
 }
