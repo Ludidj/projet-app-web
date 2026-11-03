@@ -17,9 +17,9 @@ Route::get('/recherche/equipes', RechercheEquipeController::class)
     ->name('recherche.equipes');
 
 Route::resource('equipe', EquipeController::class)
-    ->middlewareFor(['create', 'edit', 'update', 'destroy'], 'auth')
-    ->middlewareFor('store', ['auth', 'verified']);
-
+    ->middlewareFor(['create', 'edit', 'store','update', 'destroy'], 
+     ['auth', EnsureManager::class]
+    );
 
 Route::post('/langue', function (Request $request) {
     $data = $request->validate([
