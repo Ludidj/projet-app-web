@@ -5,7 +5,9 @@
 @section('content')
     <h1>Équipes</h1>
 
+    @if (auth()->check() && auth()->user()->role === \App\Models\User::ROLE_MANAGER)
     <a href="{{ route('equipe.create') }}">Ajouter une équipe</a>
+@endif
 
     <label for="search">{{ __('interface.search') }}</label>
     <input id="search" type="search" autocomplete="off"

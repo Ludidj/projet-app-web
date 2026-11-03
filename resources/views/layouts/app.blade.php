@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -12,18 +13,17 @@
 @auth
     <form method="post" action="{{ route('logout') }}">
         @csrf
+        <a href="{{ route('account.show') }}">Mon compte</a>
         <button type="submit">Se déconnecter</button>
     </form>
 @else
     <a href="{{ route('login') }}">Connexion</a>
     <a href="{{ route('register') }}">Inscription</a>
-    <a href="{{ route('account.show') }}">Mon compte</a>
 @endauth
 
-    <main>
-        @yield('content')
-    </main>
-</body>
+<main>
+    @yield('content')
+</main>
 
 <form method="post" action="{{ route('locale.update') }}">
     @csrf
@@ -35,7 +35,5 @@
     <button type="submit">Appliquer</button>
 </form>
 
-
-
-
+</body>
 </html>

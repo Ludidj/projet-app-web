@@ -61,6 +61,6 @@ if (! $verification->successful() || $verification->json('success') !== true) {
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('equipes.index');
+        return redirect()->route('equipe.index');
     }
 }
