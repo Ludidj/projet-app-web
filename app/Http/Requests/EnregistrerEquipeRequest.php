@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class EnregistrerEquipeRequest extends FormRequest
 {
@@ -34,4 +36,12 @@ class EnregistrerEquipeRequest extends FormRequest
             ],
         ];
     }
+
+    public function show(Request $request): View
+{
+    return view('account.show', [
+        'user' => $request->user(),
+        'equipes' => $request->user()->equipes()->latest()->get(),
+    ]);
+}
 }

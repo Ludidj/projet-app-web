@@ -8,6 +8,18 @@
     @stack('scripts')
 </head>
 <body>
+
+@auth
+    <form method="post" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit">Se déconnecter</button>
+    </form>
+@else
+    <a href="{{ route('login') }}">Connexion</a>
+    <a href="{{ route('register') }}">Inscription</a>
+    <a href="{{ route('account.show') }}">Mon compte</a>
+@endauth
+
     <main>
         @yield('content')
     </main>
@@ -22,5 +34,8 @@
     </select>
     <button type="submit">Appliquer</button>
 </form>
+
+
+
 
 </html>
