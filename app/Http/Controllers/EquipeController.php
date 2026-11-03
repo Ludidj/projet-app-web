@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Throwable;
 use App\Http\Requests\EnregistrerEquipeRequest;
+use Illuminate\Support\Facades\Gate;
 
 class EquipeController extends Controller
 {
@@ -56,6 +57,7 @@ class EquipeController extends Controller
         $equipe = Equipe::create([
             ...$data,
             'image_path' => $path,
+             'user_id' => $request->user()->id,
         ]);
     } catch (Throwable $exception) {
         if ($path) {
@@ -84,6 +86,8 @@ class EquipeController extends Controller
      */
     public function edit(Equipe $equipe): View
     {
+        Gate::authorize('update', $equipe);
+
         $sports = Sport::all();
 
         return view('equipes.edit', compact('equipe', 'sports'));
@@ -94,6 +98,7 @@ class EquipeController extends Controller
      */
    public function update(EnregistrerEquipeRequest $request, Equipe $equipe): RedirectResponse
 {
+    Gate::authorize('update', $equipe);
     $data = $request->safe()->except('image');
     $newPath = $request->file('image')?->store('equipes', 'public');
     $oldPath = $equipe->image_path;
@@ -127,6 +132,7 @@ class EquipeController extends Controller
      */
     public function destroy(Equipe $equipe): RedirectResponse
     {
+        Gate::authorized('delete', $equipe);
         $image = $equipe->image_path;
         $equipe->delete();
 
@@ -139,4 +145,7 @@ class EquipeController extends Controller
 
             
     }
+
+
+    
 }

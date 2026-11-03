@@ -11,6 +11,8 @@ return new class extends Migration
         Schema::create('equipe', function (Blueprint $table) {
             $table->id('idEquipe');
 
+
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->unsignedBigInteger('idSport')->nullable();
 
             $table->string('nom', 45)->nullable();

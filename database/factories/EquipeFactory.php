@@ -18,7 +18,7 @@ class EquipeFactory extends Factory
     public function definition(): array
     {
         return [
-             'Division' => fake()->numberBetween(1, 4),
+             'Division' => fake()->numberBetween(1, 4), //assosier des sport a des fake equipe
             //
  'idSport' => Sport::factory(),
              'nom' => fake()->word(),
