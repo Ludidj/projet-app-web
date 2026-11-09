@@ -9,14 +9,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('entrainement', function (Blueprint $table) {
-            $table->integer('idEntrainement')->primary();
-            $table->id('idEquipe')->nullable();
+            $table->id('idEntrainement');
+
+            $table->unsignedBigInteger('idEquipe')->nullable();
+
             $table->string('heure', 45)->nullable();
             $table->string('fréquence', 45)->nullable();
 
             $table->foreign('idEquipe')
                 ->references('idEquipe')
-                ->on('equipe');
+                ->on('equipe')
+                ->nullOnDelete();
         });
     }
 

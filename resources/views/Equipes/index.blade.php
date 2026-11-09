@@ -32,7 +32,7 @@
         <p>Aucune équipe enregistrée.</p>
     @endforelse
 
-    {{ $equipes->links() }}
+    {{ $equipes->links('pagination::simple-tailwind') }}
 @endsection
 
 @push('scripts')
