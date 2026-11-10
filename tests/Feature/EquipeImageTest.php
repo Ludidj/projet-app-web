@@ -30,7 +30,11 @@ class EquipeImageTest extends TestCase
                 'nom' => 'Équipe illustrée',
                 'Division' => 1,
                 'idSport' => $sport->idSports,
-                'image' => UploadedFile::fake()->image('photo.png'),
+                'image' => UploadedFile::fake()->create(
+    'photo.png',
+    100,
+    'image/png'
+)
             ])
             ->assertRedirect();
 
