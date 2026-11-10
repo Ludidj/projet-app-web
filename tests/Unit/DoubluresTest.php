@@ -13,7 +13,7 @@ class AlerteEquipe
 {
     public function __construct(private EnvoiAlerte $envoi) {}
 
-    public function avertir(string $titre): bool
+    public function avertir(string $nom): bool
     {
         return $this->envoi->envoyer("Equipe : $nom");
     }
