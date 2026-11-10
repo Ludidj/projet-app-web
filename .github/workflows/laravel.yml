@@ -1,3 +1,4 @@
+
 name: Tester Laravel
 
 on:
@@ -16,7 +17,6 @@ jobs:
         suite: [Unit, Feature]
 
     steps:
-      
       - name: Recuperer le code
         uses: actions/checkout@v7
 
@@ -24,12 +24,12 @@ jobs:
         run: docker build -t application-laravel:${{ github.sha }} .
 
       - name: Executer les tests
-        run: |
-          docker run --rm \
-            -e APP_ENV=testing \
-            -e APP_KEY=base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= \
-            -e DB_CONNECTION=sqlite \
-            -e DB_DATABASE=:memory: \
-            -e MAIL_MAILER=array \
-            application-laravel:${{ github.sha }} \
-            sh -c "touch .env && php artisan config:clear && php artisan test --testsuite=${{ matrix.suite }}"
+        run: >-
+          docker run --rm
+          -e APP_ENV=testing
+          -e APP_KEY=base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+          -e DB_CONNECTION=sqlite
+          -e DB_DATABASE=:memory:
+          -e MAIL_MAILER=array
+          application-laravel:${{ github.sha }}
+          sh -c "touch .env && php artisan test --testsuite=${{ matrix.suite }}"
