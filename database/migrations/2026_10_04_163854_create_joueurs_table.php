@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('joueurs', function (Blueprint $table) {
             $table->id('idJoueurs');
 
-            $table->id('idEquipe')->nullable();
+            $table->unsignedBigInteger('idEquipe')->nullable();
 
             $table->string('nom', 45)->nullable();
             $table->string('prénom', 45)->nullable();
@@ -22,7 +22,8 @@ return new class extends Migration
 
             $table->foreign('idEquipe')
                 ->references('idEquipe')
-                ->on('equipe');
+                ->on('equipe')
+                ->nullOnDelete();
         });
     }
 
