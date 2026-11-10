@@ -1,3 +1,4 @@
+
 name: Laravel CI
 
 on:
@@ -15,15 +16,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Construire l'image Laravel
-        run: docker build -t laravel-app .
+        run: docker build -t application-laravel .
 
-      - name: Verifier public/index.php
-        run: >-
-          docker run --rm
-          -e APP_ENV=testing
-          -e APP_KEY=base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
-          -e DB_CONNECTION=sqlite
-          -e DB_DATABASE=:memory:
-          -e MAIL_MAILER=array
-          application-laravel:${{ github.sha }}
-          sh -c "touch .env && php artisan test --testsuite=${{ matrix.suite }}"
+      - name: Verifier Laravel
+        run: |
+          docker run --rm application-laravel php artisan --version
+
+      - name: Executer les tests Laravel
+        run: |
+          docker run --rm \
+            -e APP_ENV=testing \
+            -e APP_KEY=base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= \
+            -e DB_CONNECTION=sqlite \
+            -e DB_DATABASE=:memory: \
+            -e MAIL_MAILER=array \
+            application-laravel \
+            php artisan test
