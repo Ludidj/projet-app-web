@@ -3,14 +3,15 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
-
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 abstract class TestCase extends BaseTestCase
 {
-  
+    use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();

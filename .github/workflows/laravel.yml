@@ -31,4 +31,4 @@ jobs:
             -e DB_DATABASE=:memory: \
             -e MAIL_MAILER=array \
             application-laravel:${{ github.sha }} \
-            sh -c "touch .env && php artisan migrate:fresh --force && php artisan test --testsuite=${{ matrix.suite }}"
+            sh -c "touch .env && php artisan config:clear && php artisan test --testsuite=${{ matrix.suite }}"
