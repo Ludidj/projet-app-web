@@ -24,7 +24,7 @@ class EquipeController extends Controller
             ->with('sport')
             ->paginate(10);
 
-        return view('equipes.index', compact('equipes'));
+        return view('equipe.index', compact('equipes'));
     }
 
     /**

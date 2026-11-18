@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompteController;
 use App\Http\Middleware\EnsureManager;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\SportController;
 
 use Illuminate\Contracts\View\View;
 
@@ -75,3 +76,18 @@ Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
     return back()->with('status', 'Lien de vérification envoyé.');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+
+
+  /**
+     *ajout des sport pour la personne responsable des ressources humaines
+**/
+ Route::get('/sports', [SportController::class, 'index'])
+    ->name('sports.index');
+
+Route::get('/sports/create', [SportController::class, 'create'])
+    ->name('sports.create');
+
+Route::post('/sports', [SportController::class, 'store'])
+    ->name('sports.store');

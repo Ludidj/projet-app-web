@@ -11,6 +11,9 @@ class SportController extends Controller
      */
     public function index()
     {
+        $sports = Sport::all();
+
+        return view('sports.index', compact('sports'));
         //
     }
 
@@ -19,6 +22,10 @@ class SportController extends Controller
      */
     public function create()
     {
+
+    Gate::authorized('create', Sport::class);
+
+    return view('sports.create');
         //
     }
 
@@ -27,6 +34,18 @@ class SportController extends Controller
      */
     public function store(Request $request)
     {
+       Gate::authorize('create', Sport::class);
+
+        $donnees = $request->validate([
+            'nomSport' => 'required|string|max:45',
+            'description' => 'nullable|string|max:45'
+        ]);
+
+        Sport::create($donnees);
+
+        return redirect()
+            ->route('sports.create')
+            ->with('status', 'Sport créé avec succès.');   
         //
     }
 
