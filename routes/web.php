@@ -10,6 +10,7 @@ use App\Http\Controllers\CompteController;
 use App\Http\Middleware\EnsureManager;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\SportController;
+use App\Http\Controllers\JoueurController;
 
 use Illuminate\Contracts\View\View;
 
@@ -69,7 +70,7 @@ Route::get('/email/verify', fn () => view('auth.verify-email'))
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect()->route('equipes.index');
+    return redirect()->route('equipe.index');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
@@ -91,3 +92,20 @@ Route::get('/sports/create', [SportController::class, 'create'])
 
 Route::post('/sports', [SportController::class, 'store'])
     ->name('sports.store');
+
+ Route::middleware(['auth'])->group(function () {
+
+    Route::get('/equipe/{idEquipe}/joueurs/create', [JoueurController::class, 'create'])
+        ->name('joueurs.create');
+
+    Route::post('/equipe/{idEquipe}/joueurs', [JoueurController::class, 'store'])
+        ->name('joueurs.store');
+
+});
+
+Route::resource('joueurs', JoueurController::class)
+    ->except(['create', 'store'])
+    ->middleware('auth');
+
+    Route::post('/equipe/{idEquipe}/joueurs/ajouter', [JoueurController::class, 'ajouter'])
+    ->name('joueurs.ajouter');

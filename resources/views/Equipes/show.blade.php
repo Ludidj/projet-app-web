@@ -22,7 +22,12 @@
         style="max-width: 300px; height: auto;"
     >
 @endif
+
 <h2>Joueurs</h2>
+
+<a href="{{ route('joueurs.create', ['idEquipe' => $equipe->idEquipe]) }}">
+    <button type="button">Créer un joueur</button>
+</a>
 
 @forelse ($equipe->joueurs as $joueur)
     <article>
@@ -34,7 +39,6 @@
 @empty
     <p>Aucun joueur dans cette équipe.</p>
 @endforelse
-
 <p>
     <a href="{{ route('equipe.index') }}">Retour aux équipes</a>
 </p>

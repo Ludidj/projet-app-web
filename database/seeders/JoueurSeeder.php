@@ -33,6 +33,7 @@ class JoueurSeeder extends Seeder
                     'age' => $joueur[4],
                     'sexe' => $joueur[5],
                     'idEquipe' => null,
+                    'est_seed' => true,
                 ]
             );
         }
