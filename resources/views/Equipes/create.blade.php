@@ -2,7 +2,7 @@
 
 <form method="post" action="{{ route('equipe.store') }}" enctype="multipart/form-data">
     @csrf
-    @include('equipes._form', ['equipe' => null])
+    @include('Equipes._form', ['equipe' => null])
 </form>
 
 <p><a href="{{ route('equipe.index') }}">Retour aux équipes</a></p>

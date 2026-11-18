@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('match', function (Blueprint $table) {
             $table->id('idMatch');
 
-            $table->id('idEquipe')->nullable();
+            $table->unsignedBigInteger('idEquipe')->nullable();
             $table->date('date')->nullable();
             $table->string('Lieu', 100)->nullable();
             $table->time('heure')->nullable();
@@ -21,11 +21,13 @@ return new class extends Migration
 
             $table->foreign('idEquipe')
                 ->references('idEquipe')
-                ->on('equipe');
+                ->on('equipe')
+                ->nullOnDelete();
 
             $table->foreign('idAdversaire')
                 ->references('idEquipe')
-                ->on('equipe');
+                ->on('equipe')
+                ->nullOnDelete();
         });
     }
 

@@ -6,26 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        //
-           Schema::table('equipe', function (Blueprint $table) {
-        $table->foreignId('user_id')->nullable()->constrained('users');
-    });
+        if (!Schema::hasColumn('equipe', 'user_id')) {
+            Schema::table('equipe', function (Blueprint $table) {
+                $table->foreignId('user_id')
+                    ->nullable()
+                    ->constrained('users');
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
-public function down(): void
-{
-    Schema::table('equipe', function (Blueprint $table) {
-        $table->dropConstrainedForeignId('user_id');
-    });
-}
-
+    public function down(): void
+    {
+        if (Schema::hasColumn('equipe', 'user_id')) {
+            Schema::table('equipe', function (Blueprint $table) {
+                $table->dropConstrainedForeignId('user_id');
+            });
+        }
+    }
 };
-

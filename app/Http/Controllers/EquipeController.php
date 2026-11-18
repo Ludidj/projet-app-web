@@ -34,7 +34,7 @@ class EquipeController extends Controller
     {
         $sports = Sport::all();
 
-        return view('equipes.create', compact('sports'));
+        return view('Equipes.create', compact('sports'));
     }
 
     /**
@@ -78,7 +78,7 @@ class EquipeController extends Controller
     {
         $equipe->load('sport');
 
-        return view('equipes.show', compact('equipe'));
+        return view('Equipes.show', compact('equipe'));
     }
 
     /**
@@ -90,7 +90,7 @@ class EquipeController extends Controller
 
         $sports = Sport::all();
 
-        return view('equipes.edit', compact('equipe', 'sports'));
+        return view('Equipes.edit', compact('equipe', 'sports'));
     }
 
     /**
