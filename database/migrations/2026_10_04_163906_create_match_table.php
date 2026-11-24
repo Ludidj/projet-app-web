@@ -15,6 +15,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->string('Lieu', 100)->nullable();
             $table->time('heure')->nullable();
+            $table->string('statut')->default('a_venir');
             $table->unsignedBigInteger('idAdversaire')->nullable();
             $table->integer('scoreEquipe')->nullable();
             $table->integer('scoreAdversair')->nullable();

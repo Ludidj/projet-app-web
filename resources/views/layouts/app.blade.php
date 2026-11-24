@@ -7,18 +7,44 @@
     <title>@yield('title', 'Equipes')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @stack('scripts')
+
+    <style>
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+        }
+
+        nav form {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    </style>
 </head>
 <body>
 
 @auth
-    <form method="post" action="{{ route('logout') }}">
-        @csrf
+    <nav>
         <a href="{{ route('account.show') }}">Mon compte</a>
-        <button type="submit">Se déconnecter</button>
-    </form>
+
+        <a href="{{ route('match.index') }}">Matchs</a>
+
+        @if (auth()->user()->role === \App\Models\User::ROLE_MANAGER)
+            <a href="{{ route('match.create') }}">Ajouter un match</a>
+        @endif
+
+        <form method="post" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">Se déconnecter</button>
+        </form>
+    </nav>
 @else
-    <a href="{{ route('login') }}">Connexion</a>
-    <a href="{{ route('register') }}">Inscription</a>
+    <nav>
+        <a href="{{ route('login') }}">Connexion</a>
+        <a href="{{ route('register') }}">Inscription</a>
+    </nav>
 @endauth
 
 <main>

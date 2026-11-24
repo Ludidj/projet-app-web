@@ -12,7 +12,7 @@ class Match1 extends Model
 {
     use HasFactory;
 
-    protected $table = 'Match';
+    protected $table = 'match';
 
     protected $primaryKey = 'idMatch';
 
@@ -26,7 +26,8 @@ class Match1 extends Model
         'heure',
         'idAdversaire',
         'scoreEquipe',
-        'scoreAdversair'
+        'scoreAdversair',
+        'statut'
     ];
 
     protected function casts(): array
@@ -45,4 +46,9 @@ class Match1 extends Model
     {
         return $this->belongsTo(Equipe::class, 'idEquipe', 'idEquipe');
     }
+
+   public function adversaire(): BelongsTo
+{
+    return $this->belongsTo(Equipe::class, 'idAdversaire', 'idEquipe');
+}
 }

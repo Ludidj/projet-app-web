@@ -11,6 +11,7 @@ use App\Http\Middleware\EnsureManager;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\JoueurController;
+use App\Http\Controllers\MatchController;
 
 use Illuminate\Contracts\View\View;
 
@@ -117,3 +118,13 @@ Route::patch('/joueurs/{joueur}/retirer', [JoueurController::class, 'retirerDeEq
 // Administrateur
 Route::delete('/joueurs/{joueur}', [JoueurController::class, 'destroy'])
     ->name('joueurs.destroy');
+
+
+    // Gestion des matchs
+Route::resource('match', MatchController::class)
+    ->only(['index', 'create', 'store', 'show', 'edit', 'update'])
+    ->middleware('auth')
+    ->middlewareFor(
+        ['create', 'store', 'edit', 'update'],
+        [EnsureManager::class]
+    );
