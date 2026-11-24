@@ -1,37 +1,45 @@
 
-<h1>Créer un sport</h1>
+@extends('layouts.app')
 
-@if (session('status'))
-    <p>{{ session('status') }}</p>
-@endif
+@section('title', 'Créer un sport')
 
-<form action="{{ route('sports.store') }}" method="POST">
-    @csrf
+@section('content')
 
-    <div>
-        <label for="nomSport">Nom du sport</label>
-        <input
-            type="text"
-            name="nomSport"
-            id="nomSport"
-            value="{{ old('nomSport') }}"
-        >
+    <h1>Créer un sport</h1>
 
-        @error('nomSport')
-            <p>{{ $message }}</p>
-        @enderror
-    </div>
+    @if (session('status'))
+        <p>{{ session('status') }}</p>
+    @endif
 
-    <div>
-        <label for="description">Description</label>
-        <textarea name="description" id="description">{{ old('description') }}</textarea>
+    <form action="{{ route('sports.store') }}" method="POST">
+        @csrf
 
-        @error('description')
-            <p>{{ $message }}</p>
-        @enderror
-    </div>
+        <div>
+            <label for="nomSport">Nom du sport</label>
+            <input
+                type="text"
+                name="nomSport"
+                id="nomSport"
+                value="{{ old('nomSport') }}"
+            >
 
-    <button type="submit">Créer le sport</button>
-</form>
+            @error('nomSport')
+                <p>{{ $message }}</p>
+            @enderror
+        </div>
 
-<a href="{{ route('sports.index') }}">Voir les sports</a>
+        <div>
+            <label for="description">Description</label>
+            <textarea name="description" id="description">{{ old('description') }}</textarea>
+
+            @error('description')
+                <p>{{ $message }}</p>
+            @enderror
+        </div>
+
+        <button type="submit">Créer le sport</button>
+    </form>
+
+    <a href="{{ route('sports.index') }}">Voir les sports</a>
+
+@endsection

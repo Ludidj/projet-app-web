@@ -109,3 +109,11 @@ Route::resource('joueurs', JoueurController::class)
 
     Route::post('/equipe/{idEquipe}/joueurs/ajouter', [JoueurController::class, 'ajouter'])
     ->name('joueurs.ajouter');
+
+    // Coach peut supprime run joueur d'une equipe
+Route::patch('/joueurs/{joueur}/retirer', [JoueurController::class, 'retirerDeEquipe'])
+    ->name('joueurs.retirer');
+
+// Administrateur
+Route::delete('/joueurs/{joueur}', [JoueurController::class, 'destroy'])
+    ->name('joueurs.destroy');

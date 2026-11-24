@@ -1,26 +1,34 @@
-<h1>Créer un joueur</h1>
+@extends('layouts.app')
 
-<p>Équipe : {{ $equipe->nom }}</p>
+@section('title', 'Créer un joueur')
 
-<form method="POST" action="{{ route('joueurs.store', $equipe->idEquipe) }}">
-    @csrf
+@section('content')
 
-    <label>Nom</label>
-    <input type="text" name="nom" required>
+    <h1>Créer un joueur</h1>
 
-    <label>Prénom</label>
-    <input type="text" name="prénom" required>
+    <p>Équipe : {{ $equipe->nom }}</p>
 
-    <label>Numéro</label>
-    <input type="number" name="numero" required>
+    <form method="POST" action="{{ route('joueurs.store', $equipe->idEquipe) }}">
+        @csrf
 
-    <label>Âge</label>
-    <input type="number" name="age" required>
+        <label for="nom">Nom</label>
+        <input id="nom" type="text" name="nom" required>
 
-    <label>Sexe</label>
-    <input type="text" name="sexe" required>
+        <label for="prénom">Prénom</label>
+        <input id="prénom" type="text" name="prénom" required>
 
-    <button type="submit">Créer le joueur</button>
-</form>
+        <label for="numero">Numéro</label>
+        <input id="numero" type="number" name="numero" required>
 
-<a href="{{ route('equipe.show', $equipe->idEquipe) }}">Retour à l'équipe</a>
+        <label for="age">Âge</label>
+        <input id="age" type="number" name="age" required>
+
+        <label for="sexe">Sexe</label>
+        <input id="sexe" type="text" name="sexe" required>
+
+        <button type="submit">Créer le joueur</button>
+    </form>
+
+    <a href="{{ route('equipe.show', $equipe->idEquipe) }}">Retour à l'équipe</a>
+
+@endsection

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
+use App\Models\Sport;
 
 class SportController extends Controller
 {
@@ -23,7 +25,7 @@ class SportController extends Controller
     public function create()
     {
 
-    Gate::authorized('create', Sport::class);
+    Gate::authorize('create', Sport::class);
 
     return view('sports.create');
         //

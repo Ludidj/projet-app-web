@@ -24,7 +24,7 @@ class EquipeController extends Controller
             ->with('sport')
             ->paginate(10);
 
-        return view('equipe.index', compact('equipes'));
+        return view('equipes.index', compact('equipes'));
     }
 
     /**
@@ -34,7 +34,7 @@ class EquipeController extends Controller
     {
         $sports = Sport::all();
 
-        return view('Equipes.create', compact('sports'));
+        return view('equipes.create', compact('sports'));
     }
 
     /**
@@ -89,7 +89,7 @@ public function show(Equipe $equipe): View
 
         $sports = Sport::all();
 
-        return view('Equipes.edit', compact('equipe', 'sports'));
+        return view('equipes.edit', compact('equipe', 'sports'));
     }
 
     /**

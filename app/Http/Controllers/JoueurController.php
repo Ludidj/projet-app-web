@@ -115,5 +115,12 @@ public function ajouter(Request $request, string $idEquipe)
 
     return redirect()->route('equipe.show', $equipe->idEquipe);
 }
+public function retirerDeEquipe(Joueur $joueur)
+{
+    $joueur->idEquipe = null;
+    $joueur->save();
 
+    return redirect()->back()
+        ->with('success', 'Joueur retiré de l’équipe.');
+}
 }
