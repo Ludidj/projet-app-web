@@ -94,7 +94,7 @@ Route::get('/sports/create', [SportController::class, 'create'])
 Route::post('/sports', [SportController::class, 'store'])
     ->name('sports.store');
 
- Route::middleware(['auth'])->group(function () {
+ Route::middleware(['auth', EnsureManager::class])->group(function () {
 
     Route::get('/equipe/{idEquipe}/joueurs/create', [JoueurController::class, 'create'])
         ->name('joueurs.create');
@@ -128,3 +128,6 @@ Route::resource('match', MatchController::class)
         ['create', 'store', 'edit', 'update'],
         [EnsureManager::class]
     );
+
+    //affichage des equipe d,un joueur
+

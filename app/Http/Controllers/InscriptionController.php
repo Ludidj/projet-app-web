@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Events\Registered;
+use App\Models\Joueur;
 
 
 class InscriptionController extends Controller
@@ -54,9 +55,17 @@ if (! $verification->successful() || $verification->json('success') !== true) {
     ]);
 }
 
+$user = User::create($data);
 
-        $user = User::create($data);
-        event(new Registered($user));
+// Associer le compte au joueur qui possède le même courriel
+$joueur = Joueur::where('email', $user->email)->first();
+
+if ($joueur) {
+    $joueur->user_id = $user->id;
+    $joueur->save();
+}
+
+event(new Registered($user));
 
         Auth::login($user);
         $request->session()->regenerate();

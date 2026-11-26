@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,6 +13,7 @@ return new class extends Migration
             $table->id('idJoueurs');
 
             $table->unsignedBigInteger('idEquipe')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable()->unique();
 
             $table->string('nom', 45)->nullable();
             $table->string('prénom', 45)->nullable();
@@ -23,6 +25,11 @@ return new class extends Migration
             $table->foreign('idEquipe')
                 ->references('idEquipe')
                 ->on('equipe')
+                ->nullOnDelete();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->nullOnDelete();
         });
     }

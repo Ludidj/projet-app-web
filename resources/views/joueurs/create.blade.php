@@ -17,6 +17,16 @@
         <label for="prénom">Prénom</label>
         <input id="prénom" type="text" name="prénom" required>
 
+        
+        <label for="email">Courriel </label>
+<input
+    type="email"
+    id="email"
+    name="email"
+    value="{{ old('email') }}"
+    required
+>
+
         <label for="numero">Numéro</label>
         <input id="numero" type="number" name="numero" required>
 

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Equipe;
+use App\Models\Joueur;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -60,6 +61,9 @@ public function equipes(): HasMany
     return $this->hasMany(Equipe::class);
 }
 
-
+public function joueur()
+{
+    return $this->hasOne(Joueur::class, 'user_id');
+}
 
 }

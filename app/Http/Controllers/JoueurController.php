@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Equipe;
 use App\Models\Joueur;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class JoueurController extends Controller
 {
     // Afficher tous les joueurs
@@ -25,28 +25,41 @@ class JoueurController extends Controller
     }
 
     // Enregistrer un nouveau joueur
- public function store(Request $request, string $idEquipe)
+
+public function store(Request $request, string $idEquipe)
 {
     $request->validate([
         'nom' => 'required|string',
         'prénom' => 'required|string',
+        'email' => 'required|email',
         'numero' => 'required|integer',
         'age' => 'required|integer',
         'sexe' => 'required|string',
     ]);
 
-    Joueur::create([
+    // Créer le joueur
+    $joueur = Joueur::create([
         'nom' => $request->nom,
         'prénom' => $request->input('prénom'),
+        'email' => $request->email,
         'numero' => $request->numero,
         'age' => $request->age,
         'sexe' => $request->sexe,
         'idEquipe' => null,
-        'est_seed' => false,
     ]);
+
+    // Chercher un compte qui possède le même courriel
+    $user = User::where('email', $request->email)->first();
+
+    // Associer automatiquement le compte au joueur
+    if ($user) {
+        $joueur->user_id = $user->id;
+        $joueur->save();
+    }
 
     return redirect()->route('equipe.show', $idEquipe);
 }
+
     // Afficher un joueur
     public function show(string $id)
     {
