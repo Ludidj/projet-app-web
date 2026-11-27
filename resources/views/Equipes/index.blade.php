@@ -7,7 +7,13 @@
 
     @if (auth()->check() && auth()->user()->role === \App\Models\User::ROLE_MANAGER)
     <a href="{{ route('equipe.create') }}">Ajouter une équipe</a>
+    
+
 @endif
+
+@if (auth()->check() && auth()->user()->role === \App\Models\User::ROLE_ADMIN)
+@endif
+    <a href="{{ route('sport.create') }}">créer un sport</a>
 
     <label for="search">{{ __('interface.search') }}</label>
     <input id="search" type="search" autocomplete="off"
