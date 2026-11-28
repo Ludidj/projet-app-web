@@ -17,47 +17,39 @@ class JoueurController extends Controller
     }
 
     // Afficher le formulaire de création
-    public function create(string $idEquipe)
+    public function create()
     {
-        $equipe = Equipe::findOrFail($idEquipe);
-
-        return view('joueurs.create', compact('equipe'));
+        return view('joueurs.create');
     }
 
     // Enregistrer un nouveau joueur
 
-public function store(Request $request, string $idEquipe)
+public function store(Request $request)
 {
-    $request->validate([
-        'nom' => 'required|string',
-        'prénom' => 'required|string',
-        'email' => 'required|email',
-        'numero' => 'required|integer',
-        'age' => 'required|integer',
-        'sexe' => 'required|string',
+    $data = $request->validate([
+        'nom' => ['required', 'string', 'max:45'],
+        'prénom' => ['required', 'string', 'max:45'],
+        'email' => ['required', 'email', 'max:255'],
+        'numero' => ['required', 'integer', 'min:1'],
+        'age' => ['required', 'integer', 'min:1', 'max:100'],
+        'sexe' => ['required', 'string', 'max:45'],
     ]);
 
-    // Créer le joueur
-    $joueur = Joueur::create([
-        'nom' => $request->nom,
-        'prénom' => $request->input('prénom'),
-        'email' => $request->email,
-        'numero' => $request->numero,
-        'age' => $request->age,
-        'sexe' => $request->sexe,
+    $user = User::where('email', $data['email'])
+        ->whereDoesntHave('joueur')
+        ->first();
+
+    Joueur::create([
+        ...$data,
         'idEquipe' => null,
+        'division' => null,
+        'user_id' => $user?->id,
+        'created_by' => $request->user()->id,
     ]);
 
-    // Chercher un compte qui possède le même courriel
-    $user = User::where('email', $request->email)->first();
-
-    // Associer automatiquement le compte au joueur
-    if ($user) {
-        $joueur->user_id = $user->id;
-        $joueur->save();
-    }
-
-    return redirect()->route('equipe.show', $idEquipe);
+    return redirect()
+        ->route('joueurs.create')
+        ->with('status', 'Le joueur est disponible dans les listes des entraineur.');
 }
 
     // Afficher un joueur
@@ -124,9 +116,12 @@ public function ajouter(Request $request, string $idEquipe)
         ->findOrFail($request->idJoueur);
 
     $joueur->idEquipe = $equipe->idEquipe;
+    $joueur->division = $equipe->Division;
     $joueur->save();
 
-    return redirect()->route('equipe.show', $equipe->idEquipe);
+    return redirect()
+        ->route('equipe.show', $equipe->idEquipe)
+        ->with('status', 'Le joueur a été ajouté à l’équipe.');
 }
 public function retirerDeEquipe(Joueur $joueur)
 {

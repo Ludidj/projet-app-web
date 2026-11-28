@@ -22,7 +22,9 @@ class Joueur extends Model
         'division',
         'age',
         'sexe',
-        'user_id'
+        'email',
+        'user_id',
+        'created_by',
     ];
 
     protected function casts(): array

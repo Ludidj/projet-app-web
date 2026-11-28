@@ -1,11 +1,11 @@
 
 @extends('layouts.app')
 
-@section('title', 'Créer un sport')
+@section('title', __('interface.sport_create_title'))
 
 @section('content')
 
-    <h1>Créer un sport</h1>
+    <h1>{{ __('interface.sport_create_title') }}</h1>
 
     @if (session('status'))
         <p>{{ session('status') }}</p>
@@ -15,7 +15,7 @@
         @csrf
 
         <div>
-            <label for="nomSport">Nom du sport</label>
+            <label for="nomSport">{{ __('interface.sport') }}</label>
             <input
                 type="text"
                 name="nomSport"
@@ -29,7 +29,7 @@
         </div>
 
         <div>
-            <label for="description">Description</label>
+            <label for="description">{{ __('interface.description') }}</label>
             <textarea name="description" id="description">{{ old('description') }}</textarea>
 
             @error('description')
@@ -37,9 +37,9 @@
             @enderror
         </div>
 
-        <button type="submit">Créer le sport</button>
+        <button type="submit">{{ __('interface.create_sport') }}</button>
     </form>
 
-    <a href="{{ route('sports.index') }}">Voir les sports</a>
+    <a href="{{ route('sports.index') }}">{{ __('interface.view_sports') }}</a>
 
 @endsection

@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Inscription')
+@section('title', __('interface.register_title'))
 @section('content')
 
-<h1> Créer un compte </h1>
+<h1>{{ __('interface.register_title') }}</h1>
 
 <form method="post" action="{{ route('register.store')  }}">
 
 @csrf 
 
-<label for="name">Nom </label>
+<label for="name">{{ __('interface.name') }}</label>
 <input id= "name" name = "name" type="text" value="{{ old('name') }}" required>
  @error('name') <p>{{ $message }}</p> @enderror
 
-        <label for="email">Adresse courriel</label>
+        <label for="email">{{ __('interface.email') }}</label>
         <input id="email" name="email" type="email" value="{{ old('email') }}" required>
         @error('email') <p>{{ $message }}</p> @enderror
 
-        <label for="email_confirmation">Confirmer l'adresse courriel</label>
+        <label for="email_confirmation">{{ __('interface.confirm_email') }}</label>
         <input id="email_confirmation" name="email_confirmation" type="email" value="{{ old('email_confirmation') }}" required>
 
-        <label for="password">Mot de passe</label>
+        <label for="password">{{ __('interface.password') }}</label>
         <input id="password" name="password" type="password" required>
         @error('password') <p>{{ $message }}</p> @enderror
 
-        <label for="password_confirmation">Confirmation</label>
+        <label for="password_confirmation">{{ __('interface.confirm_password') }}</label>
         <input id="password_confirmation" name="password_confirmation" type="password" required>
 
 
@@ -33,7 +33,7 @@
 
 
 
-        <button type="submit">Créer le compte</button>
+        <button type="submit">{{ __('interface.register_submit') }}</button>
     </form>
 
 @endsection

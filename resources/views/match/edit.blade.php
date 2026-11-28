@@ -1,31 +1,31 @@
 
 @extends('layouts.app')
 
-@section('title', 'Modifier le statut')
+@section('title', __('interface.edit_match_status'))
 
 @section('content')
 
-    <h1>Modifier le statut du match</h1>
+    <h1>{{ __('interface.edit_match_status_title') }}</h1>
 
     <p>
-        Équipe : {{ $match->equipe?->nom ?? 'Équipe inconnue' }}
+        {{ __('interface.team') }} : {{ $match->equipe?->nom ?? __('interface.unknown_team') }}
     </p>
 
-    <p>Date : {{ $match->date?->format('d/m/Y') }}</p>
+    <p>{{ __('interface.match_date', ['date' => $match->date?->format('d/m/Y')]) }}</p>
 
     <form method="POST" action="{{ route('match.update', $match->idMatch) }}">
         @csrf
         @method('PUT')
 
-        <label for="statut">Statut du match</label>
+        <label for="statut">{{ __('interface.match_status') }}</label>
 
         <select id="statut" name="statut">
             <option value="a_venir" @selected(old('statut', $match->statut) === 'a_venir')>
-                À venir
+                {{ __('interface.upcoming') }}
             </option>
 
             <option value="annule" @selected(old('statut', $match->statut) === 'annule')>
-                Annulé
+                {{ __('interface.cancelled') }}
             </option>
         </select>
 
@@ -33,9 +33,9 @@
             <p>{{ $message }}</p>
         @enderror
 
-        <button type="submit">Enregistrer</button>
+        <button type="submit">{{ __('interface.save_changes') }}</button>
     </form>
 
-    <a href="{{ route('match.index') }}">Retour aux matchs</a>
+    <a href="{{ route('match.index') }}">{{ __('interface.return_matches') }}</a>
 
 @endsection

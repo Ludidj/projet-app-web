@@ -64,6 +64,10 @@ Route::post('/connexion', [AuthController::class, 'login'])
 
 
 // Déconnexion
+Route::get('/deconnexion', fn () => view('auth.logout-confirm'))
+    ->middleware('auth')
+    ->name('logout.confirm');
+
 Route::post('/deconnexion', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
@@ -109,7 +113,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 // Sports : consultation
 Route::get('/sports', [SportController::class, 'index'])
-    ->middleware('auth')
     ->name('sports.index');
 
 
@@ -124,23 +127,27 @@ Route::middleware(['auth', EnsureAdmin::class])->group(function () {
 
 });
 
-
-// Joueurs : consultation
-Route::resource('joueurs', JoueurController::class)
-    ->only(['index', 'show'])
-    ->middleware('auth');
+Route::get('/sports/{sport}', [SportController::class, 'show'])
+    ->whereNumber('sport')
+    ->name('sports.show');
 
 
 // Joueurs : création par l'administrateur
 Route::middleware(['auth', EnsureAdmin::class])->group(function () {
 
-    Route::get('/equipe/{idEquipe}/joueurs/create', [JoueurController::class, 'create'])
+    Route::get('/joueurs/create', [JoueurController::class, 'create'])
         ->name('joueurs.create');
 
-    Route::post('/equipe/{idEquipe}/joueurs', [JoueurController::class, 'store'])
+    Route::post('/joueurs', [JoueurController::class, 'store'])
         ->name('joueurs.store');
 
 });
+
+
+// Joueurs : consultation
+Route::resource('joueurs', JoueurController::class)
+    ->only(['index', 'show'])
+    ->middleware('auth');
 
 
 // Gestion des joueurs dans les équipes par l'entraîneur
@@ -152,19 +159,22 @@ Route::middleware(['auth', EnsureManager::class])->group(function () {
     Route::patch('/joueurs/{joueur}/retirer', [JoueurController::class, 'retirerDeEquipe'])
         ->name('joueurs.retirer');
 
+    Route::delete('/joueurs/{joueur}', [JoueurController::class, 'destroy'])
+        ->name('joueurs.destroy');
+
 });
-
-
-// Matchs : consultation
-Route::resource('match', MatchController::class)
-    ->only(['index', 'show'])
-    ->middleware('auth');
 
 
 // Matchs : gestion par l'entraîneur
 Route::resource('match', MatchController::class)
     ->only(['create', 'store', 'edit', 'update'])
     ->middleware(['auth', EnsureManager::class]);
+
+
+// Matchs : consultation
+Route::resource('match', MatchController::class)
+    ->only(['index', 'show'])
+    ->middleware('auth');
 
 Route::get('/test-cookie', function () {
     $response = response('Cookie test')

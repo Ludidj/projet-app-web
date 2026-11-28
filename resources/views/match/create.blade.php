@@ -1,18 +1,18 @@
 
 @extends('layouts.app')
 
-@section('title', 'Ajouter un match')
+@section('title', __('interface.add_match_title'))
 
 @section('content')
 
-    <h1>Ajouter un match</h1>
+    <h1>{{ __('interface.add_match_title') }}</h1>
 
 <form method="GET" action="{{ route('match.create') }}">
 
-    <label for="idSport">Sport</label>
+    <label for="idSport">{{ __('interface.sport') }}</label>
 
     <select id="idSport" name="idSport" onchange="this.form.submit()">
-        <option value="">-- Choisir un sport --</option>
+        <option value="">{{ __('interface.choose_sport') }}</option>
 
         @foreach ($sports as $sport)
             <option
@@ -36,10 +36,10 @@
 
         <input type="hidden" name="idSport" value="{{ request('idSport') }}">
 
-        <label for="idEquipe">Mon équipe</label>
+        <label for="idEquipe">{{ __('interface.my_team_label') }}</label>
 
         <select id="idEquipe" name="idEquipe">
-            <option value="">-- Choisir une équipe --</option>
+            <option value="">{{ __('interface.choose_team') }}</option>
 
             @foreach ($equipes as $equipe)
                 <option
@@ -55,10 +55,10 @@
             <p>{{ $message }}</p>
         @enderror
 
-        <label for="idAdversaire">Équipe adverse</label>
+        <label for="idAdversaire">{{ __('interface.opponent_label') }}</label>
 
         <select id="idAdversaire" name="idAdversaire">
-            <option value="">-- Choisir l'équipe adverse --</option>
+            <option value="">{{ __('interface.choose_opponent') }}</option>
 
             @foreach ($equipes as $equipe)
                 <option
@@ -74,7 +74,7 @@
             <p>{{ $message }}</p>
         @enderror
 
-        <label for="date">Date du match</label>
+        <label for="date">{{ __('interface.match_date_label') }}</label>
 
         <input
             type="date"
@@ -88,7 +88,7 @@
             <p>{{ $message }}</p>
         @enderror
 
-        <label for="heure">Heure</label>
+        <label for="heure">{{ __('interface.time') }}</label>
 
         <input
             type="time"
@@ -101,7 +101,7 @@
             <p>{{ $message }}</p>
         @enderror
 
-        <label for="Lieu">Lieu</label>
+        <label for="Lieu">{{ __('interface.location') }}</label>
 
         <input
             type="text"
@@ -114,7 +114,7 @@
             <p>{{ $message }}</p>
         @enderror
 
-        <button type="submit">Ajouter le match</button>
+        <button type="submit">{{ __('interface.add_match_submit') }}</button>
 
     </form>
 

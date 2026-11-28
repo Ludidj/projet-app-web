@@ -17,9 +17,9 @@ class Sport extends Model
     public $timestamps = false;
 
     protected $fillable = [
-       
         'nomSport',
-        'description'
+        'description',
+        'created_by',
     ];
 
     protected function casts(): array

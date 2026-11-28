@@ -1,24 +1,24 @@
 
 @extends('layouts.app')
 
-@section('title', 'Détails du match')
+@section('title', __('interface.match_details_title'))
 
 @section('content')
 
-    <h1>Détails du match</h1>
+    <h1>{{ __('interface.match_details_title') }}</h1>
 
-    <p>Mon équipe : {{ $match->equipe?->nom ?? 'Équipe inconnue' }}</p>
-    <p>Équipe adverse : {{ $match->idAdversaire }}</p>
-    <p>Date : {{ $match->date?->format('d/m/Y') }}</p>
-    <p>Heure : {{ $match->heure }}</p>
-    <p>Lieu : {{ $match->Lieu }}</p>
+    <p>{{ __('interface.my_team') }} : {{ $match->equipe?->nom ?? __('interface.unknown_team') }}</p>
+    <p>{{ __('interface.opposing_team') }} : {{ $match->idAdversaire }}</p>
+    <p>{{ __('interface.match_date', ['date' => $match->date?->format('d/m/Y')]) }}</p>
+    <p>{{ __('interface.match_time', ['time' => substr((string) $match->heure, 0, 5)]) }}</p>
+    <p>{{ __('interface.match_location', ['location' => $match->Lieu]) }}</p>
 
     @if ($match->statut === 'annule')
-        <p>Statut : Annulé</p>
+        <p>{{ __('interface.match_status') }} : {{ __('interface.cancelled') }}</p>
     @else
-        <p>Statut : À venir</p>
+        <p>{{ __('interface.match_status') }} : {{ __('interface.upcoming') }}</p>
     @endif
 
-    <a href="{{ route('match.index') }}">Retour aux matchs</a>
+    <a href="{{ route('match.index') }}">{{ __('interface.return_matches') }}</a>
 
 @endsection

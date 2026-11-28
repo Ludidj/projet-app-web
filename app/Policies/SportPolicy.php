@@ -29,7 +29,7 @@ class SportPolicy
      */
     public function create(User $user): bool
     {
-       return $user->role === User::ROLE_MANAGER;
+        return $user->role === User::ROLE_ADMIN;
     }
 
     /**

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Vérifier votre adresse courriel')
+@section('title', __('interface.email_verification_title'))
 
 @section('content')
-    <h1>Vérifiez votre adresse courriel</h1>
-    <p>Un lien de vérification vous a été envoyé par courriel.</p>
+    <h1>{{ __('interface.email_verification_title') }}</h1>
+    <p>{{ __('interface.email_verification_sent') }}</p>
 
     @if (session('status'))
         <p>{{ session('status') }}</p>
@@ -12,6 +12,6 @@
 
     <form method="post" action="{{ route('verification.send') }}">
         @csrf
-        <button type="submit">Renvoyer le lien</button>
+        <button type="submit">{{ __('interface.resend_link') }}</button>
     </form>
 @endsection

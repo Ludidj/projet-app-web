@@ -56,7 +56,7 @@ class MatchController extends Controller
 
             'date' => ['required', 'date', 'after_or_equal:today'],
             'Lieu' => ['required', 'string', 'max:100'],
-            'heure' => ['required'],
+            'heure' => ['required', 'date_format:H:i'],
         ]);
 
         // Le sport sert seulement à vérifier les équipes.

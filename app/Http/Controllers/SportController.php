@@ -13,10 +13,20 @@ class SportController extends Controller
      */
     public function index()
     {
-        $sports = Sport::all();
+        $sports = Sport::withCount('equipes')
+            ->orderBy('nomSport')
+            ->get();
 
         return view('sports.index', compact('sports'));
-        //
+    }
+
+    /** Display the teams that practice a sport. */
+    public function show(string $id)
+    {
+        $sport = Sport::with(['equipes' => fn ($query) => $query->orderBy('nom')])
+            ->findOrFail($id);
+
+        return view('sports.show', compact('sport'));
     }
 
     /**
@@ -28,7 +38,6 @@ class SportController extends Controller
     Gate::authorize('create', Sport::class);
 
     return view('sports.create');
-        //
     }
 
     /**
@@ -43,19 +52,14 @@ class SportController extends Controller
             'description' => 'nullable|string|max:45'
         ]);
 
-        Sport::create($donnees);
+        Sport::create([
+            ...$donnees,
+            'created_by' => $request->user()->id,
+        ]);
 
         return redirect()
             ->route('sports.create')
             ->with('status', 'Sport créé avec succès.');   
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
         //
     }
 

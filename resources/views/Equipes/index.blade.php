@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Équipes')
+@section('title', __('interface.teams'))
 
 @section('content')
-    <h1>Équipes</h1>
+    <h1>{{ __('interface.teams') }}</h1>
 
     @if (auth()->check() && auth()->user()->role === \App\Models\User::ROLE_MANAGER)
-    <a href="{{ route('equipe.create') }}">Ajouter une équipe</a>
+    <a href="{{ route('equipe.create') }}">{{ __('interface.team_create_title') }}</a>
     
 
 @endif
 
 @if (auth()->check() && auth()->user()->role === \App\Models\User::ROLE_ADMIN)
 @endif
-    <a href="{{ route('sport.create') }}">créer un sport</a>
+    <a href="{{ route('sport.create') }}">{{ __('interface.add_sport') }}</a>
 
     <label for="search">{{ __('interface.search') }}</label>
     <input id="search" type="search" autocomplete="off"
@@ -35,10 +35,10 @@
             </h2>
         </article>
     @empty
-        <p>Aucune équipe enregistrée.</p>
+        <p>{{ __('interface.teams_empty') }}</p>
     @endforelse
 
-    {{ $equipes->links('pagination::simple-tailwind') }}
+    {{ $equipes->links('pagination.simple') }}
 @endsection
 
 @push('scripts')

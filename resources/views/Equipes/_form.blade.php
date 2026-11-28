@@ -1,8 +1,8 @@
 @csrf
 
-<label for="idSport">Sport</label>
+<label for="idSport">{{ __('interface.sport') }}</label>
 <select id="idSport" name="idSport">
-    <option value="">-- Choisir un sport --</option>
+    <option value="">{{ __('interface.choose_sport') }}</option>
 
     @foreach ($sports as $sport)
         <option
@@ -18,7 +18,7 @@
     <p>{{ $message }}</p>
 @enderror
 
-<label for="nom">Nom de l'équipe</label>
+<label for="nom">{{ __('interface.team_name') }}</label>
 <input
     type="text"
     id="nom"
@@ -29,7 +29,7 @@
     <p>{{ $message }}</p>
 @enderror
 
-<label for="Division">Division</label>
+<label for="Division">{{ __('interface.division') }}</label>
 <input
     type="number"
     id="Division"
@@ -40,11 +40,11 @@
     <p>{{ $message }}</p>
 @enderror
 
-<label for="image">Image</label>
+<label for="image">{{ __('interface.image') }}</label>
 <input id="image" name="image" type="file"
        accept="image/jpeg,image/png,image/webp">
 @error('image')
     <p>{{ $message }}</p>
 @enderror
 
-<button type="submit">Enregistrer</button>
+<button type="submit">{{ __('interface.save') }}</button>

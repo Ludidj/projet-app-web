@@ -6,7 +6,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -31,11 +30,6 @@ public function login(Request $request): RedirectResponse
     }
 
     $request->session()->regenerate();
-
-    // Vérifier le rôle après connexion
-  if (Auth::user()->role === User::ROLE_ADMIN) {
-        return redirect()->route('admin.index');
-    }
 
     return redirect()->route('equipe.index');
 }
